@@ -1,0 +1,47 @@
+Spellcast is a strange little strategy game, which I found
+on the Net and have implemented for X.
+
+Basically, two or more players try to vaporize each other
+with a wide assortment of wizardly spells. For the complete 
+rules, see the man page (spellcast.6), which goes into 
+exhaustive detail.
+
+Compiling should be straightforward; spellcast uses only 
+Xlib, with no widget sets or other libraries. 
+
+NOTE: Some (all?) versions of SunOS have a buggy
+realloc(), which causes spellcast to crash early and often.
+If you're on a Sparc and you have this problem, the fix
+is to compile with -lbsdmalloc. Uncomment the OTHERLIBS
+line in the Makefile.
+
+The Makefile begins with a few definitions which you 
+can change:
+the directories where everything gets installed;
+the default fonts that the program tries to load (usually 
+	times 14, helvetica 12, and fixed, in that order);
+the directory in which game transcripts are stored (usually
+	/tmp.)
+
+Type "make" or "make spellcast" to create the executable.
+
+"make stupid" will create a version of the game with a
+terribly stupid, text-only interface -- this is not very
+playable, and is really only good for testing. You enter
+all the players' moves in a single string at the prompt,
+and answer questions as they appear.
+
+The file spelllist.ps is a PostScript document showing all
+the available spells, in two columns: one sorted by gesture,
+and one sorted by name. By default, it will be installed as
+DESTDIR/lib/spellcast/spelllist.ps.
+
+The original paper-and-pencil version of this game was
+created by Richard Bartle (76703.3042@compuserve.com). 
+This implementation is by Andrew Plotkin 
+(ap1i+@andrew.cmu.edu). It is copyright 1993 by Andrew 
+Plotkin. The source code may be freely copied, distributed, 
+and modified, as long as this copyright notice is retained. The
+source code and any derivative works may not be sold for
+profit without the permission of Andrew Plotkin and Richard
+Bartle.

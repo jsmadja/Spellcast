@@ -1,0 +1,209 @@
+%!
+
+/centershow
+   {gsave dup stringwidth pop 2 div neg 0 rmoveto
+    show 
+    grestore} def 
+
+/clapstr 288 string def
+/snapstr 288 string def
+/wavestr 288 string def
+/digitstr 288 string def
+/palmstr 288 string def
+/fingerstr 288 string def
+
+currentfile clapstr readhexstring
+ffffffffffffffffffffffffffffffffffffffffffff3fffffffffff1fff
+fffffffe1ffffffffffe1ffffffffffe1ffffffffffc3ffffffffff83fff
+fffffff83ffffffffff87ffffffffff07ffffffffff07fffffffffe07fff
+ffffffe0ffffffffffe0ffffffffffc0ffffffffffc0ffffffffffc0ffff
+ffffffc0ffffffffffc0ffffffffffc0ffffffffff80ffffffffff80ffff
+ffffff80ffffffffff80ffffffffffc07fffffffffc07fffffffffc07fff
+ffffffc07fffffffffc07fffffffffc03fffffffffc03fffffffffc01fff
+ffffffc01fffffffffc01fffffffffc00fffffffff800fffffffff800fff
+ffffff801fffffffff001ffffffffe001ffffffffe003ffffffffc003fff
+fffff0007fffffffe000ffffffffffffffff
+pop pop
+
+currentfile snapstr readhexstring
+fffffffffffffffffffffffffffff7ffbffffffffbffbffffffffdffbfff
+fffffdff7ffffffffeff7fffffffffffffffffffffffff3ffffffffff8ff
+ffffffc7f7ffffffff03fffffffff803fffffffff000ffffffffc0007fff
+ffff00007ffffffe00007e03fffc00007ffffff800607ffffff000e07fff
+ffe001e0ffffffc003c0ffffff8007c0fbffff000f80fdffff001f01feff
+fe001e01ff7ffe003c01fffffc002001fffffc000000fffffc0000007fff
+fc0000003ffffc0000001ffffe0000001fffff0000001fffff0000000fff
+ffc000000fffffe000000ffffff000000ffffff800000ffffffe00000fff
+ffff00000fffffff80000fffffffc0001fffffffe0001fffffffe0003fff
+fffff8003ffffffff8007fffffffffffffff
+pop pop
+
+currentfile wavestr readhexstring
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+fffffffffffffffffffffffffffffffffffffffffffffffffffffff0ffff
+ffffffe07fffffffff807fffffffff01fffffffffc03fffffffff007ffff
+ffffc01fffffffff803fffffffff007fffffffff00fffffffffe01ffffff
+fffc03fffffffff803fffffffff007ffffffffe007ffffffffc00fffffff
+ffc00fffffffff8007ffffffff8007ffffffff8003ffffffffc001ffffff
+ffe000fffffffff0003ffffffff8001ffffffffc000ffffffffe0007ffff
+ffff0003ffffffff8000ffffffffc0007fffffffe0003ffffffff0001fff
+fffff0001ffffffff0000ffffffff0000ffffffff0000fffffffe0000fff
+ffffc0001fffffffc0003fffffffffffffff
+pop pop
+
+currentfile digitstr readhexstring
+fffffffffffffffffffffffffffffffffffffffffffcfffffffffffc7fff
+fffffff87ffffffffff87ffffffffff07ffffffffff07fffffffffe0ffff
+ffffffe0ffffffffffe0ffffffffffc1ffffffffffc1ffffffffff81ffff
+ffffff81ffffffffff03ffffffffff03fffffffffe03fffffffffc03ffff
+ffffc003ffffffffc003fffffffe0003fffffffc00021ffffffc00001fff
+ffe000003fffffe000003fffffc000003fffff8000007fffff8000007fff
+ff8000007fffff8000007fffff8000007fffff8000007fffff800000ffff
+ff800000ffffff800001ffffff800001ffffff800003ffffffc00003ffff
+ffc00007ffffffe0000ffffffff0001ffffffff0001ffffffff0007fffff
+ffe000ffffffffc000ffffffffffffffffff
+pop pop
+
+currentfile palmstr readhexstring
+fffffffffffffffffffffffffffffe7ffffffffffe3ffffffffffc39ffff
+fffffc38fffffffffc30ffffffff9c30ffffffff1c30ffffffff0c30ffff
+ffff0c30ffffffff0c30ffffffff0c30ffffffff0c30ffffffff0c30ffff
+ffff0c30fffffff70c30ffffffe30c30ffffffe30c30ffffffe30c30ffff
+ffe30c30ffffffc30c10ff3fffc20800fe3fffc20000fe3fffc20000fc3f
+ffc20000fc3fffc00000783fffc00000783fffc00000707fffc00000607f
+ffc00000407fffc00000007fffc0000000ffffc0000000ffffc0000001ff
+ffc0000003ffffe0000003ffffe0000007ffffe000000fffffe000000fff
+fff000001ffffff000001ffffff000003ffffff800007ffffff800007fff
+fffc0001fffffffe0001ffffffffffffffff
+pop pop
+
+currentfile fingerstr readhexstring
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+fffffffffffffffffffffffffffffffffffffffffffffffffffffcf87fff
+fffff8707ffffffff0e0ffffffffc1c1fc3fffff8383f03fffff0707e07f
+ffe70e0fc0ffffc60c1f83ffff861c1f03ffff0c183e07ffff18183e0fff
+fe18383c0ffffe30303c1ffffc3030381ffffc2060103ffffc2000003fff
+fc0000003ffffc0000003ffffc0000007e3ffc0000007e3ffc0000007c3f
+fc000000783ffc000000703ffc000000607ffe000000007ffe00000000ff
+fe00000001fffe00000003fffe00000007ffff0000000fffff8000003fff
+ff8000007fffff000000fffffe000003fffffc00000ffffff800001fffff
+f000007ffffff000007fffffffffffffffff
+pop pop
+
+/showfinger {
+gsave
+translate 12 12 scale 
+48 48 false [ 48 0 0 -48 0 48 ] { fingerstr }
+imagemask
+grestore
+} def
+
+/showpalm {
+gsave
+translate 12 12 scale 
+48 48 false [ 48 0 0 -48 0 48 ] { palmstr }
+imagemask
+grestore
+} def
+
+/showdigit {
+gsave
+translate 12 12 scale 
+48 48 false [ 48 0 0 -48 0 48 ] { digitstr }
+imagemask
+grestore
+} def
+
+/showsnap {
+gsave
+translate 12 12 scale 
+48 48 false [ 48 0 0 -48 0 48 ] { snapstr }
+imagemask
+grestore
+} def
+
+/showwave {
+gsave
+translate 12 12 scale 
+48 48 false [ 48 0 0 -48 0 48 ] { wavestr }
+imagemask
+grestore
+} def
+
+/showclap {
+gsave
+translate 12 12 scale 
+48 48 false [ 48 0 0 -48 0 48 ] { clapstr }
+imagemask
+grestore
+} def
+
+/showclap2 {
+gsave
+translate 12 12 scale 
+-0.3 0 translate
+48 48 false [ 48 0 0 -48 0 48 ] { clapstr }
+imagemask
+1.6 0 translate
+-1 1 scale
+48 48 false [ 48 0 0 -48 0 48 ] { clapstr }
+imagemask
+grestore
+} def
+
+/showdigit2 {
+gsave
+translate 12 12 scale 
+-0.0 0 translate
+48 48 false [ 48 0 0 -48 0 48 ] { digitstr }
+imagemask
+1.5 0 translate
+-1 1 scale
+48 48 false [ 48 0 0 -48 0 48 ] { digitstr }
+imagemask
+grestore
+} def
+
+/showwave2 {
+gsave
+translate 12 12 scale 
+-0.0 0 translate
+48 48 false [ 48 0 0 -48 0 48 ] { wavestr }
+imagemask
+1.55 0 translate
+-1 1 scale
+48 48 false [ 48 0 0 -48 0 48 ] { wavestr }
+imagemask
+grestore
+} def
+
+/showsnap2 {
+gsave
+translate 12 12 scale 
+-0.0 0 translate
+48 48 false [ 48 0 0 -48 0 48 ] { snapstr }
+imagemask
+1.55 0 translate
+-1 1 scale
+48 48 false [ 48 0 0 -48 0 48 ] { snapstr }
+imagemask
+grestore
+} def
+
+/showpalm2 {
+gsave
+translate 12 12 scale 
+-0.2 0 translate
+48 48 false [ 48 0 0 -48 0 48 ] { palmstr }
+imagemask
+1.6 0 translate
+-1 1 scale
+48 48 false [ 48 0 0 -48 0 48 ] { palmstr }
+imagemask
+grestore
+} def
+
+/nullact {
+pop pop
+} def
+

@@ -1,0 +1,726 @@
+%!
+
+/centershow
+   {gsave dup stringwidth pop 2 div neg 0 rmoveto
+    show 
+    grestore} def 
+
+/clapstr 288 string def
+/snapstr 288 string def
+/wavestr 288 string def
+/digitstr 288 string def
+/palmstr 288 string def
+/fingerstr 288 string def
+
+currentfile clapstr readhexstring
+ffffffffffffffffffffffffffffffffffffffffffff3fffffffffff1fff
+fffffffe1ffffffffffe1ffffffffffe1ffffffffffc3ffffffffff83fff
+fffffff83ffffffffff87ffffffffff07ffffffffff07fffffffffe07fff
+ffffffe0ffffffffffe0ffffffffffc0ffffffffffc0ffffffffffc0ffff
+ffffffc0ffffffffffc0ffffffffffc0ffffffffff80ffffffffff80ffff
+ffffff80ffffffffff80ffffffffffc07fffffffffc07fffffffffc07fff
+ffffffc07fffffffffc07fffffffffc03fffffffffc03fffffffffc01fff
+ffffffc01fffffffffc01fffffffffc00fffffffff800fffffffff800fff
+ffffff801fffffffff001ffffffffe001ffffffffe003ffffffffc003fff
+fffff0007fffffffe000ffffffffffffffff
+pop pop
+
+currentfile snapstr readhexstring
+fffffffffffffffffffffffffffff7ffbffffffffbffbffffffffdffbfff
+fffffdff7ffffffffeff7fffffffffffffffffffffffff3ffffffffff8ff
+ffffffc7f7ffffffff03fffffffff803fffffffff000ffffffffc0007fff
+ffff00007ffffffe00007e03fffc00007ffffff800607ffffff000e07fff
+ffe001e0ffffffc003c0ffffff8007c0fbffff000f80fdffff001f01feff
+fe001e01ff7ffe003c01fffffc002001fffffc000000fffffc0000007fff
+fc0000003ffffc0000001ffffe0000001fffff0000001fffff0000000fff
+ffc000000fffffe000000ffffff000000ffffff800000ffffffe00000fff
+ffff00000fffffff80000fffffffc0001fffffffe0001fffffffe0003fff
+fffff8003ffffffff8007fffffffffffffff
+pop pop
+
+currentfile wavestr readhexstring
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+fffffffffffffffffffffffffffffffffffffffffffffffffffffff0ffff
+ffffffe07fffffffff807fffffffff01fffffffffc03fffffffff007ffff
+ffffc01fffffffff803fffffffff007fffffffff00fffffffffe01ffffff
+fffc03fffffffff803fffffffff007ffffffffe007ffffffffc00fffffff
+ffc00fffffffff8007ffffffff8007ffffffff8003ffffffffc001ffffff
+ffe000fffffffff0003ffffffff8001ffffffffc000ffffffffe0007ffff
+ffff0003ffffffff8000ffffffffc0007fffffffe0003ffffffff0001fff
+fffff0001ffffffff0000ffffffff0000ffffffff0000fffffffe0000fff
+ffffc0001fffffffc0003fffffffffffffff
+pop pop
+
+currentfile digitstr readhexstring
+fffffffffffffffffffffffffffffffffffffffffffcfffffffffffc7fff
+fffffff87ffffffffff87ffffffffff07ffffffffff07fffffffffe0ffff
+ffffffe0ffffffffffe0ffffffffffc1ffffffffffc1ffffffffff81ffff
+ffffff81ffffffffff03ffffffffff03fffffffffe03fffffffffc03ffff
+ffffc003ffffffffc003fffffffe0003fffffffc00021ffffffc00001fff
+ffe000003fffffe000003fffffc000003fffff8000007fffff8000007fff
+ff8000007fffff8000007fffff8000007fffff8000007fffff800000ffff
+ff800000ffffff800001ffffff800001ffffff800003ffffffc00003ffff
+ffc00007ffffffe0000ffffffff0001ffffffff0001ffffffff0007fffff
+ffe000ffffffffc000ffffffffffffffffff
+pop pop
+
+currentfile palmstr readhexstring
+fffffffffffffffffffffffffffffe7ffffffffffe3ffffffffffc39ffff
+fffffc38fffffffffc30ffffffff9c30ffffffff1c30ffffffff0c30ffff
+ffff0c30ffffffff0c30ffffffff0c30ffffffff0c30ffffffff0c30ffff
+ffff0c30fffffff70c30ffffffe30c30ffffffe30c30ffffffe30c30ffff
+ffe30c30ffffffc30c10ff3fffc20800fe3fffc20000fe3fffc20000fc3f
+ffc20000fc3fffc00000783fffc00000783fffc00000707fffc00000607f
+ffc00000407fffc00000007fffc0000000ffffc0000000ffffc0000001ff
+ffc0000003ffffe0000003ffffe0000007ffffe000000fffffe000000fff
+fff000001ffffff000001ffffff000003ffffff800007ffffff800007fff
+fffc0001fffffffe0001ffffffffffffffff
+pop pop
+
+currentfile fingerstr readhexstring
+ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+fffffffffffffffffffffffffffffffffffffffffffffffffffffcf87fff
+fffff8707ffffffff0e0ffffffffc1c1fc3fffff8383f03fffff0707e07f
+ffe70e0fc0ffffc60c1f83ffff861c1f03ffff0c183e07ffff18183e0fff
+fe18383c0ffffe30303c1ffffc3030381ffffc2060103ffffc2000003fff
+fc0000003ffffc0000003ffffc0000007e3ffc0000007e3ffc0000007c3f
+fc000000783ffc000000703ffc000000607ffe000000007ffe00000000ff
+fe00000001fffe00000003fffe00000007ffff0000000fffff8000003fff
+ff8000007fffff000000fffffe000003fffffc00000ffffff800001fffff
+f000007ffffff000007fffffffffffffffff
+pop pop
+
+/showfinger {
+gsave
+translate 12 12 scale 
+48 48 false [ 48 0 0 -48 0 48 ] { fingerstr }
+imagemask
+grestore
+} def
+
+/showpalm {
+gsave
+translate 12 12 scale 
+48 48 false [ 48 0 0 -48 0 48 ] { palmstr }
+imagemask
+grestore
+} def
+
+/showdigit {
+gsave
+translate 12 12 scale 
+48 48 false [ 48 0 0 -48 0 48 ] { digitstr }
+imagemask
+grestore
+} def
+
+/showsnap {
+gsave
+translate 12 12 scale 
+48 48 false [ 48 0 0 -48 0 48 ] { snapstr }
+imagemask
+grestore
+} def
+
+/showwave {
+gsave
+translate 12 12 scale 
+48 48 false [ 48 0 0 -48 0 48 ] { wavestr }
+imagemask
+grestore
+} def
+
+/showclap {
+gsave
+translate 12 12 scale 
+48 48 false [ 48 0 0 -48 0 48 ] { clapstr }
+imagemask
+grestore
+} def
+
+/showclap2 {
+gsave
+translate 12 12 scale 
+-0.3 0 translate
+48 48 false [ 48 0 0 -48 0 48 ] { clapstr }
+imagemask
+1.6 0 translate
+-1 1 scale
+48 48 false [ 48 0 0 -48 0 48 ] { clapstr }
+imagemask
+grestore
+} def
+
+/showdigit2 {
+gsave
+translate 12 12 scale 
+-0.0 0 translate
+48 48 false [ 48 0 0 -48 0 48 ] { digitstr }
+imagemask
+1.5 0 translate
+-1 1 scale
+48 48 false [ 48 0 0 -48 0 48 ] { digitstr }
+imagemask
+grestore
+} def
+
+/showwave2 {
+gsave
+translate 12 12 scale 
+-0.0 0 translate
+48 48 false [ 48 0 0 -48 0 48 ] { wavestr }
+imagemask
+1.55 0 translate
+-1 1 scale
+48 48 false [ 48 0 0 -48 0 48 ] { wavestr }
+imagemask
+grestore
+} def
+
+/showsnap2 {
+gsave
+translate 12 12 scale 
+-0.0 0 translate
+48 48 false [ 48 0 0 -48 0 48 ] { snapstr }
+imagemask
+1.55 0 translate
+-1 1 scale
+48 48 false [ 48 0 0 -48 0 48 ] { snapstr }
+imagemask
+grestore
+} def
+
+/showpalm2 {
+gsave
+translate 12 12 scale 
+-0.2 0 translate
+48 48 false [ 48 0 0 -48 0 48 ] { palmstr }
+imagemask
+1.6 0 translate
+-1 1 scale
+48 48 false [ 48 0 0 -48 0 48 ] { palmstr }
+imagemask
+grestore
+} def
+
+/nullact {
+pop pop
+} def
+
+/Times-Roman findfont 12 scalefont setfont
+0.5 setlinewidth
+72 699 showclap2
+84 699 showdigit
+96 699 showpalm
+108 699 showwave
+123 704 moveto  176 704 lineto stroke
+180 700 moveto (Dispel Magic) show
+72 683 showclap2
+84 683 showsnap
+96 683 showwave
+108 683 showwave
+120 683 showsnap
+135 688 moveto  176 688 lineto stroke
+180 684 moveto (Summon Elemental) show
+72 667 showclap2
+84 667 showwave2
+104 672 moveto  176 672 lineto stroke
+180 668 moveto (Magic Mirror) show
+72 651 showdigit
+84 651 showfinger
+96 651 showfinger
+108 651 showdigit
+120 651 showdigit
+135 656 moveto  176 656 lineto stroke
+180 652 moveto (Lightning Bolt) show
+72 635 showdigit
+84 635 showfinger
+96 635 showpalm
+108 635 showwave
+123 640 moveto  176 640 lineto stroke
+180 636 moveto (Cure Heavy Wounds) show
+72 619 showdigit
+84 619 showfinger
+96 619 showwave
+111 624 moveto  176 624 lineto stroke
+180 620 moveto (Cure Light Wounds) show
+72 603 showdigit
+84 603 showpalm
+96 603 showpalm
+111 608 moveto  176 608 lineto stroke
+180 604 moveto (Amnesia) show
+72 587 showdigit
+84 587 showsnap
+96 587 showfinger
+111 592 moveto  176 592 lineto stroke
+180 588 moveto (Confusion) show
+72 571 showdigit
+84 571 showsnap
+96 571 showfinger
+108 571 showfinger
+120 571 showfinger
+132 571 showclap2
+147 576 moveto  176 576 lineto stroke
+180 572 moveto (Disease) show
+72 555 showdigit
+84 555 showwave
+96 555 showfinger
+108 555 showfinger
+120 555 showdigit2
+140 560 moveto  176 560 lineto stroke
+180 556 moveto (Blindness) show
+72 539 showdigit
+84 539 showwave
+96 539 showsnap
+108 539 showsnap
+120 539 showsnap
+132 539 showpalm
+147 544 moveto  176 544 lineto stroke
+180 540 moveto (Delayed Effect) show
+72 523 showdigit
+84 523 showwave
+96 523 showwave
+108 523 showfinger
+120 523 showwave
+132 523 showclap2
+147 528 moveto  176 528 lineto stroke
+180 524 moveto (Raise Dead) show
+72 507 showdigit
+84 507 showwave
+96 507 showwave
+108 507 showfinger
+120 507 showwave
+132 507 showdigit
+147 512 moveto  176 512 lineto stroke
+180 508 moveto (Poison) show
+72 491 showfinger
+84 491 showfinger
+96 491 showfinger
+111 496 moveto  176 496 lineto stroke
+180 492 moveto (Paralysis) show
+72 475 showfinger
+84 475 showpalm
+96 475 showsnap
+108 475 showfinger
+120 475 showwave
+135 480 moveto  176 480 lineto stroke
+180 476 moveto (Summon Troll) show
+72 459 showfinger
+84 459 showsnap
+96 459 showsnap
+108 459 showdigit
+120 459 showdigit
+135 464 moveto  176 464 lineto stroke
+180 460 moveto (Fireball) show
+72 443 showpalm
+87 448 moveto  176 448 lineto stroke
+180 444 moveto (Shield) show
+72 427 showpalm2
+92 432 moveto  176 432 lineto stroke
+180 428 moveto (SURRENDER) show
+72 411 showpalm
+84 411 showdigit
+96 411 showwave
+108 411 showpalm
+123 416 moveto  176 416 lineto stroke
+180 412 moveto (Remove Enchantment) show
+72 395 showpalm
+84 395 showpalm
+96 395 showwave2
+113 395 showsnap2
+133 400 moveto  176 400 lineto stroke
+180 396 moveto (Invisibility) show
+72 379 showpalm
+84 379 showsnap
+96 379 showdigit
+108 379 showdigit
+123 384 moveto  176 384 lineto stroke
+180 380 moveto (Charm Monster) show
+72 363 showpalm
+84 363 showsnap
+96 363 showdigit
+108 363 showfinger
+123 368 moveto  176 368 lineto stroke
+180 364 moveto (Charm Person) show
+72 347 showpalm
+84 347 showsnap
+96 347 showfinger
+108 347 showwave
+123 352 moveto  176 352 lineto stroke
+180 348 moveto (Summon Ogre) show
+72 331 showpalm
+84 331 showwave
+96 331 showpalm
+108 331 showfinger
+120 331 showsnap
+132 331 showsnap
+144 331 showsnap
+156 331 showdigit
+171 336 moveto  176 336 lineto stroke
+180 332 moveto (Finger of Death) show
+72 315 showpalm
+84 315 showwave
+96 315 showpalm
+108 315 showwave
+120 315 showwave
+132 315 showclap2
+147 320 moveto  176 320 lineto stroke
+180 316 moveto (Haste) show
+72 299 showsnap
+84 299 showdigit
+99 304 moveto  176 304 lineto stroke
+180 300 moveto (Missile) show
+72 283 showsnap
+84 283 showfinger
+96 283 showwave
+111 288 moveto  176 288 lineto stroke
+180 284 moveto (Summon Goblin) show
+72 267 showsnap
+84 267 showpalm
+96 267 showfinger
+111 272 moveto  176 272 lineto stroke
+180 268 moveto (Anti-Spell) show
+72 251 showsnap
+84 251 showpalm
+96 251 showfinger
+108 251 showpalm
+120 251 showsnap
+132 251 showdigit
+144 251 showwave
+159 256 moveto  176 256 lineto stroke
+180 252 moveto (Permanency) show
+72 235 showsnap
+84 235 showpalm
+96 235 showpalm
+108 235 showclap2
+123 240 moveto  176 240 lineto stroke
+180 236 moveto (Time Stop) show
+72 219 showsnap
+84 219 showsnap
+96 219 showfinger
+108 219 showpalm
+123 224 moveto  176 224 lineto stroke
+180 220 moveto (Resist Cold) show
+72 203 showsnap
+84 203 showwave
+96 203 showdigit
+111 208 moveto  176 208 lineto stroke
+180 204 moveto (Fear) show
+72 187 showsnap
+84 187 showwave
+96 187 showwave
+108 187 showclap2
+123 192 moveto  176 192 lineto stroke
+180 188 moveto (Fire Storm) show
+72 171 showwave
+84 171 showdigit
+96 171 showdigit
+108 171 showclap2
+123 176 moveto  176 176 lineto stroke
+180 172 moveto (Lightning Bolt) show
+72 155 showwave
+84 155 showfinger
+96 155 showpalm
+111 160 moveto  176 160 lineto stroke
+180 156 moveto (Cause Light Wounds) show
+72 139 showwave
+84 139 showfinger
+96 139 showpalm
+108 139 showsnap
+120 139 showfinger
+132 139 showwave
+147 144 moveto  176 144 lineto stroke
+180 140 moveto (Summon Giant) show
+72 123 showwave
+84 123 showpalm
+96 123 showfinger
+108 123 showdigit
+123 128 moveto  176 128 lineto stroke
+180 124 moveto (Cause Heavy Wounds) show
+72 107 showwave
+84 107 showpalm
+96 107 showpalm
+111 112 moveto  176 112 lineto stroke
+180 108 moveto (Counter-Spell) show
+72 91 showwave
+84 91 showsnap
+96 91 showsnap
+108 91 showclap2
+123 96 moveto  176 96 lineto stroke
+180 92 moveto (Ice Storm) show
+72 75 showwave
+84 75 showwave
+96 75 showfinger
+108 75 showpalm
+123 80 moveto  176 80 lineto stroke
+180 76 moveto (Resist Heat) show
+72 59 showwave
+84 59 showwave
+96 59 showpalm
+111 64 moveto  176 64 lineto stroke
+180 60 moveto (Protection From Evil) show
+72 43 showwave
+84 43 showwave
+96 43 showsnap
+111 48 moveto  176 48 lineto stroke
+180 44 moveto (Counter-Spell) show
+336 699 showdigit
+348 699 showpalm
+360 699 showpalm
+375 704 moveto  440 704 lineto stroke
+444 700 moveto (Amnesia) show
+336 683 showsnap
+348 683 showpalm
+360 683 showfinger
+375 688 moveto  440 688 lineto stroke
+444 684 moveto (Anti-Spell) show
+336 667 showdigit
+348 667 showwave
+360 667 showfinger
+372 667 showfinger
+384 667 showdigit2
+404 672 moveto  440 672 lineto stroke
+444 668 moveto (Blindness) show
+336 651 showwave
+348 651 showpalm
+360 651 showfinger
+372 651 showdigit
+387 656 moveto  440 656 lineto stroke
+444 652 moveto (Cause Heavy Wounds) show
+336 635 showwave
+348 635 showfinger
+360 635 showpalm
+375 640 moveto  440 640 lineto stroke
+444 636 moveto (Cause Light Wounds) show
+336 619 showpalm
+348 619 showsnap
+360 619 showdigit
+372 619 showdigit
+387 624 moveto  440 624 lineto stroke
+444 620 moveto (Charm Monster) show
+336 603 showpalm
+348 603 showsnap
+360 603 showdigit
+372 603 showfinger
+387 608 moveto  440 608 lineto stroke
+444 604 moveto (Charm Person) show
+336 587 showdigit
+348 587 showsnap
+360 587 showfinger
+375 592 moveto  440 592 lineto stroke
+444 588 moveto (Confusion) show
+336 571 showwave
+348 571 showpalm
+360 571 showpalm
+375 576 moveto  440 576 lineto stroke
+444 572 moveto (Counter-Spell) show
+336 555 showwave
+348 555 showwave
+360 555 showsnap
+375 560 moveto  440 560 lineto stroke
+444 556 moveto (Counter-Spell) show
+336 539 showdigit
+348 539 showfinger
+360 539 showpalm
+372 539 showwave
+387 544 moveto  440 544 lineto stroke
+444 540 moveto (Cure Heavy Wounds) show
+336 523 showdigit
+348 523 showfinger
+360 523 showwave
+375 528 moveto  440 528 lineto stroke
+444 524 moveto (Cure Light Wounds) show
+336 507 showdigit
+348 507 showwave
+360 507 showsnap
+372 507 showsnap
+384 507 showsnap
+396 507 showpalm
+411 512 moveto  440 512 lineto stroke
+444 508 moveto (Delayed Effect) show
+336 491 showdigit
+348 491 showsnap
+360 491 showfinger
+372 491 showfinger
+384 491 showfinger
+396 491 showclap2
+411 496 moveto  440 496 lineto stroke
+444 492 moveto (Disease) show
+336 475 showclap2
+348 475 showdigit
+360 475 showpalm
+372 475 showwave
+387 480 moveto  440 480 lineto stroke
+444 476 moveto (Dispel Magic) show
+336 459 showsnap
+348 459 showwave
+360 459 showdigit
+375 464 moveto  440 464 lineto stroke
+444 460 moveto (Fear) show
+336 443 showpalm
+348 443 showwave
+360 443 showpalm
+372 443 showfinger
+384 443 showsnap
+396 443 showsnap
+408 443 showsnap
+420 443 showdigit
+435 448 moveto  440 448 lineto stroke
+444 444 moveto (Finger of Death) show
+336 427 showsnap
+348 427 showwave
+360 427 showwave
+372 427 showclap2
+387 432 moveto  440 432 lineto stroke
+444 428 moveto (Fire Storm) show
+336 411 showfinger
+348 411 showsnap
+360 411 showsnap
+372 411 showdigit
+384 411 showdigit
+399 416 moveto  440 416 lineto stroke
+444 412 moveto (Fireball) show
+336 395 showpalm
+348 395 showwave
+360 395 showpalm
+372 395 showwave
+384 395 showwave
+396 395 showclap2
+411 400 moveto  440 400 lineto stroke
+444 396 moveto (Haste) show
+336 379 showwave
+348 379 showsnap
+360 379 showsnap
+372 379 showclap2
+387 384 moveto  440 384 lineto stroke
+444 380 moveto (Ice Storm) show
+336 363 showpalm
+348 363 showpalm
+360 363 showwave2
+377 363 showsnap2
+397 368 moveto  440 368 lineto stroke
+444 364 moveto (Invisibility) show
+336 347 showdigit
+348 347 showfinger
+360 347 showfinger
+372 347 showdigit
+384 347 showdigit
+399 352 moveto  440 352 lineto stroke
+444 348 moveto (Lightning Bolt) show
+336 331 showwave
+348 331 showdigit
+360 331 showdigit
+372 331 showclap2
+387 336 moveto  440 336 lineto stroke
+444 332 moveto (Lightning Bolt) show
+336 315 showclap2
+348 315 showwave2
+368 320 moveto  440 320 lineto stroke
+444 316 moveto (Magic Mirror) show
+336 299 showsnap
+348 299 showdigit
+363 304 moveto  440 304 lineto stroke
+444 300 moveto (Missile) show
+336 283 showfinger
+348 283 showfinger
+360 283 showfinger
+375 288 moveto  440 288 lineto stroke
+444 284 moveto (Paralysis) show
+336 267 showsnap
+348 267 showpalm
+360 267 showfinger
+372 267 showpalm
+384 267 showsnap
+396 267 showdigit
+408 267 showwave
+423 272 moveto  440 272 lineto stroke
+444 268 moveto (Permanency) show
+336 251 showdigit
+348 251 showwave
+360 251 showwave
+372 251 showfinger
+384 251 showwave
+396 251 showdigit
+411 256 moveto  440 256 lineto stroke
+444 252 moveto (Poison) show
+336 235 showwave
+348 235 showwave
+360 235 showpalm
+375 240 moveto  440 240 lineto stroke
+444 236 moveto (Protection From Evil) show
+336 219 showdigit
+348 219 showwave
+360 219 showwave
+372 219 showfinger
+384 219 showwave
+396 219 showclap2
+411 224 moveto  440 224 lineto stroke
+444 220 moveto (Raise Dead) show
+336 203 showpalm
+348 203 showdigit
+360 203 showwave
+372 203 showpalm
+387 208 moveto  440 208 lineto stroke
+444 204 moveto (Remove Enchantment) show
+336 187 showsnap
+348 187 showsnap
+360 187 showfinger
+372 187 showpalm
+387 192 moveto  440 192 lineto stroke
+444 188 moveto (Resist Cold) show
+336 171 showwave
+348 171 showwave
+360 171 showfinger
+372 171 showpalm
+387 176 moveto  440 176 lineto stroke
+444 172 moveto (Resist Heat) show
+336 155 showpalm
+351 160 moveto  440 160 lineto stroke
+444 156 moveto (Shield) show
+336 139 showclap2
+348 139 showsnap
+360 139 showwave
+372 139 showwave
+384 139 showsnap
+399 144 moveto  440 144 lineto stroke
+444 140 moveto (Summon Elemental) show
+336 123 showwave
+348 123 showfinger
+360 123 showpalm
+372 123 showsnap
+384 123 showfinger
+396 123 showwave
+411 128 moveto  440 128 lineto stroke
+444 124 moveto (Summon Giant) show
+336 107 showsnap
+348 107 showfinger
+360 107 showwave
+375 112 moveto  440 112 lineto stroke
+444 108 moveto (Summon Goblin) show
+336 91 showpalm
+348 91 showsnap
+360 91 showfinger
+372 91 showwave
+387 96 moveto  440 96 lineto stroke
+444 92 moveto (Summon Ogre) show
+336 75 showfinger
+348 75 showpalm
+360 75 showsnap
+372 75 showfinger
+384 75 showwave
+399 80 moveto  440 80 lineto stroke
+444 76 moveto (Summon Troll) show
+336 59 showpalm2
+356 64 moveto  440 64 lineto stroke
+444 60 moveto (SURRENDER) show
+336 43 showsnap
+348 43 showpalm
+360 43 showpalm
+372 43 showclap2
+387 48 moveto  440 48 lineto stroke
+444 44 moveto (Time Stop) show
+/Times-Bold findfont 14 scalefont setfont
+306 752 moveto
+(SpellCast spell lists -- sorted by gesture and name) centershow
+
+showpage
