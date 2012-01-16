@@ -32,7 +32,7 @@ public class Player {
         this.surrender = true;
     }
     
-    public boolean isSurrender() {
+    public boolean hasSurrendered() {
         return surrender;
     }
 }

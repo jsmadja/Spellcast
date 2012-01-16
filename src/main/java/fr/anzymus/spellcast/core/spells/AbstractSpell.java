@@ -10,6 +10,7 @@ import com.google.common.base.Joiner;
 import fr.anzymus.spellcast.core.gestures.Gesture;
 import fr.anzymus.spellcast.core.gestures.GestureHistory;
 import fr.anzymus.spellcast.core.gestures.Gestures;
+import fr.anzymus.spellcast.core.gestures.SpellGestures;
 
 public abstract class AbstractSpell implements Spell {
 

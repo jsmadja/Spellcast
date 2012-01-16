@@ -1,53 +1,22 @@
 package fr.anzymus.spellcast.core.spells;
 
-import static fr.anzymus.spellcast.core.gestures.Gesture.nothing;
-import static fr.anzymus.spellcast.core.gestures.Gesture.palm;
-import static fr.anzymus.spellcast.core.gestures.Gesture.snap;
-import static fr.anzymus.spellcast.core.gestures.Gesture.wave;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import fr.anzymus.spellcast.core.gestures.GestureHistory;
-
+import fr.anzymus.spellcast.core.Wizard;
 
 public class InvisibilitySpellTest {
 
     InvisibilitySpell invisibilitySpell = new InvisibilitySpell();
 
     @Test
-    public void should_print_invisibility_description() {
-        assertEquals("P-P-(w-(s", invisibilitySpell.toString());
+    public void should_cast_invisibility() {
+        Wizard wizard = Wizards.create(); 
+        assertFalse(wizard.isInvisible());
+        invisibilitySpell.castTo(wizard);
+        assertTrue(wizard.isInvisible());
     }
     
-    @Test
-    public void should_apply_with_left_hand() {
-        GestureHistory gestureHistory = new GestureHistory();
-        gestureHistory.add(palm);
-        gestureHistory.add(palm);
-        gestureHistory.add(wave,wave);
-        gestureHistory.add(snap,snap);
-         assertTrue(invisibilitySpell.apply(gestureHistory));
-    }
-    
-    @Test
-    public void should_apply_with_right_hand() {
-        GestureHistory gestureHistory = new GestureHistory();
-        gestureHistory.add(nothing, palm);
-        gestureHistory.add(nothing, palm);
-        gestureHistory.add(wave,wave);
-        gestureHistory.add(snap,snap);
-         assertTrue(invisibilitySpell.apply(gestureHistory));
-    }
-    
-    @Test
-    public void should_apply_with_big_history() {
-        GestureHistory gestureHistory = new GestureHistory();
-        gestureHistory.add(nothing, palm);
-        gestureHistory.add(nothing, palm);
-        gestureHistory.add(wave,wave);
-        gestureHistory.add(snap,snap);
-         assertTrue(invisibilitySpell.apply(gestureHistory));
-    }
 }

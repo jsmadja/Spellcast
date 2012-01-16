@@ -1,27 +1,29 @@
 package fr.anzymus.spellcast.core;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import fr.anzymus.spellcast.core.creature.Creature;
 import fr.anzymus.spellcast.core.gestures.Gesture;
 import fr.anzymus.spellcast.core.gestures.GestureHistory;
 import fr.anzymus.spellcast.core.gestures.Gestures;
 import fr.anzymus.spellcast.core.spells.Spell;
 import fr.anzymus.spellcast.core.spells.Spells;
 
-public class Wizard implements Target {
+public class Wizard extends LivingEntity {
 
-    private int health = 14;
     private GestureHistory gestureHistory = new GestureHistory();
 
     private List<Spell> spells = Spells.createList();
     private Player owner;
     
-    public Wizard(Player owner) {
-        this.owner = owner;
-    }
+    private boolean invisible;
+
+    private List<Creature> creatures = new ArrayList<Creature>();
     
-    public int getHealth() {
-        return health;
+    public Wizard(Player owner) {
+        super();
+        this.owner = owner;
     }
 
     public GestureHistory getGestureHistory() {
@@ -42,15 +44,29 @@ public class Wizard implements Target {
         return null;
     }
 
-    public void removeHealth(int healtPoint) {
-        health -= healtPoint;
-        if(health < 0) {
-            health = 0;
-        }
-    }
-
     public Player getOwner() {
         return owner;
     }
 
+    public void summonCreature(Creature creature) {
+        creatures.add(creature);
+    }
+
+    @Override
+    public int getInitialHealth() {
+        return 14;
+    }
+
+    public boolean isInvisible() {
+        return invisible;
+    }
+
+    public void setInvisible(boolean invisible) {
+        this.invisible = invisible;
+    }
+
+    public List<Creature> getCreatures() {
+        return creatures ;
+    }
+    
 }

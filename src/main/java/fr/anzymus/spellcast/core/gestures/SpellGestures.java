@@ -1,4 +1,4 @@
-package fr.anzymus.spellcast.core.spells;
+package fr.anzymus.spellcast.core.gestures;
 
 import static fr.anzymus.spellcast.core.gestures.Gesture.anything;
 
@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import fr.anzymus.spellcast.core.gestures.Gesture;
-import fr.anzymus.spellcast.core.gestures.Gestures;
 
 public class SpellGestures implements Iterable<Gestures>{
 

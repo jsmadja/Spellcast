@@ -55,6 +55,14 @@ public class GestureHistoryTest {
         assertEquals(1, lastGestures.size());
         assertEquals(digit_pointing, lastGestures.get(0).getLeftHandGesture());
         assertEquals(fingers, lastGestures.get(0).getRightHandGesture());
-        
+    }
+    
+    @Test
+    public void should_build_tostring() {
+        GestureHistory gestureHistory = new GestureHistory();
+        gestureHistory.add(clap, clap);
+        gestureHistory.add(fingers, fingers);
+        gestureHistory.add(digit_pointing, fingers);
+        assertEquals("Gesture History\nclap clap\nfingers fingers\ndigit_pointing fingers\n", gestureHistory.toString());
     }
 }
