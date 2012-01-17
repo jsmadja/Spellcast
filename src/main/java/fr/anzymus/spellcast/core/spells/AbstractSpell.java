@@ -16,6 +16,8 @@ public abstract class AbstractSpell implements Spell {
 
     protected SpellGestures spellGestures = new SpellGestures();
 
+    protected boolean usableOnlyOnce;
+
     public List<Gestures> getGestures() {
         return spellGestures.asList();
     }
@@ -124,5 +126,9 @@ public abstract class AbstractSpell implements Spell {
             }
         }
         return Joiner.on('-').join(descriptions);
+    }
+    
+    public boolean isUsableOnlyOnce() {
+        return usableOnlyOnce;
     }
 }

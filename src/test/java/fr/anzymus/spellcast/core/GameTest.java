@@ -14,7 +14,7 @@ import org.junit.Test;
 
 import fr.anzymus.spellcast.core.gestures.GestureHistory;
 import fr.anzymus.spellcast.core.gestures.Gestures;
-import fr.anzymus.spellcast.core.spells.StabSpell;
+import fr.anzymus.spellcast.core.spells.nonspells.StabSpell;
 
 public class GameTest {
 

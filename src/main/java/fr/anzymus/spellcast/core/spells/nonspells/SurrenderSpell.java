@@ -1,9 +1,10 @@
-package fr.anzymus.spellcast.core.spells;
+package fr.anzymus.spellcast.core.spells.nonspells;
 
 import static fr.anzymus.spellcast.core.gestures.Gesture.palm;
 import fr.anzymus.spellcast.core.Player;
 import fr.anzymus.spellcast.core.LivingEntity;
 import fr.anzymus.spellcast.core.Wizard;
+import fr.anzymus.spellcast.core.spells.AbstractSpell;
 
 public class SurrenderSpell extends AbstractSpell {
 

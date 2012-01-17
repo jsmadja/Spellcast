@@ -10,6 +10,7 @@ public class Player {
 
     public Player(String name) {
         this.name = name;
+        wizard.setName(name);
     }
 
     public Wizard getWizard() {
@@ -34,5 +35,10 @@ public class Player {
     
     public boolean hasSurrendered() {
         return surrender;
+    }
+    
+    @Override
+    public String toString() {
+        return name;
     }
 }

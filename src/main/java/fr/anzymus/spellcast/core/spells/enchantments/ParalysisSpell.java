@@ -1,7 +1,8 @@
-package fr.anzymus.spellcast.core.spells;
+package fr.anzymus.spellcast.core.spells.enchantments;
 
 import static fr.anzymus.spellcast.core.gestures.Gesture.fingers;
 import fr.anzymus.spellcast.core.LivingEntity;
+import fr.anzymus.spellcast.core.spells.AbstractSpell;
 
 public class ParalysisSpell extends AbstractSpell {
 

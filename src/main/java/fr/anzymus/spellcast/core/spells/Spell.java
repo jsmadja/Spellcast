@@ -16,4 +16,6 @@ public interface Spell {
     
     String description();
 
+    boolean isUsableOnlyOnce();
+
 }

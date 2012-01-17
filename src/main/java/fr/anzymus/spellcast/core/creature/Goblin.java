@@ -13,4 +13,9 @@ public class Goblin extends Creature {
         return 1;
     }
 
+    @Override
+    public int getAttackPoint() {
+        return 1;
+    }
+
 }

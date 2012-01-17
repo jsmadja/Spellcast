@@ -2,6 +2,7 @@ package fr.anzymus.spellcast.core.spells;
 
 import static fr.anzymus.spellcast.core.gestures.Gesture.anything;
 import static fr.anzymus.spellcast.core.gestures.Gesture.clap;
+import static fr.anzymus.spellcast.core.gestures.Gesture.digit_pointing;
 import static fr.anzymus.spellcast.core.gestures.Gesture.fingers;
 import static fr.anzymus.spellcast.core.gestures.Gesture.nothing;
 import static fr.anzymus.spellcast.core.gestures.Gesture.palm;
@@ -17,12 +18,17 @@ import org.junit.Test;
 
 import fr.anzymus.spellcast.core.gestures.GestureHistory;
 import fr.anzymus.spellcast.core.gestures.Gestures;
+import fr.anzymus.spellcast.core.spells.damaging.CauseHeavyWoundsSpell;
+import fr.anzymus.spellcast.core.spells.enchantments.InvisibilitySpell;
+import fr.anzymus.spellcast.core.spells.enchantments.ParalysisSpell;
+import fr.anzymus.spellcast.core.spells.nonspells.SurrenderSpell;
 
 public class AbstractSpellTest {
 
     Spell surrenderSpell = new SurrenderSpell();
     Spell invisibilitySpell = new InvisibilitySpell();
     Spell paralysisSpell = new ParalysisSpell();
+    Spell causeHeavyWoundsSpell = new CauseHeavyWoundsSpell();
     
     @Test
     public void should_apply_to_surrender() {
@@ -139,6 +145,19 @@ public class AbstractSpellTest {
         assertEquals(new Gestures(fingers, anything), gestures.get(0));
         assertEquals(new Gestures(fingers, anything), gestures.get(1));
         assertEquals(new Gestures(fingers, anything), gestures.get(2));
+    }
+    
+
+    @Test
+    public void should_recognize_spell() {
+        GestureHistory gestureHistory= new GestureHistory();
+        gestureHistory.add(wave, wave);
+        gestureHistory.add(wave, palm);
+        gestureHistory.add(digit_pointing, fingers);
+        gestureHistory.add(digit_pointing, digit_pointing);
+        
+        boolean apply = causeHeavyWoundsSpell.apply(gestureHistory);
+        assertTrue(apply);
     }
 
 }

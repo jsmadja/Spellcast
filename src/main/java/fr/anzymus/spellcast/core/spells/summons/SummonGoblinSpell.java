@@ -1,11 +1,13 @@
-package fr.anzymus.spellcast.core.spells;
+package fr.anzymus.spellcast.core.spells.summons;
 
 import static fr.anzymus.spellcast.core.gestures.Gesture.fingers;
 import static fr.anzymus.spellcast.core.gestures.Gesture.snap;
 import static fr.anzymus.spellcast.core.gestures.Gesture.wave;
 import fr.anzymus.spellcast.core.LivingEntity;
 import fr.anzymus.spellcast.core.Wizard;
+import fr.anzymus.spellcast.core.creature.Creature;
 import fr.anzymus.spellcast.core.creature.Goblin;
+import fr.anzymus.spellcast.core.spells.AbstractSpell;
 
 public class SummonGoblinSpell extends AbstractSpell {
 
@@ -19,7 +21,8 @@ public class SummonGoblinSpell extends AbstractSpell {
     public void castTo(LivingEntity target) {
         if(target instanceof Wizard) {
             Wizard wizard = (Wizard) target;
-            wizard.summonCreature(new Goblin(wizard));
+            Creature creature = new Goblin(wizard);
+            wizard.summonCreature(creature);
         }
     }
 

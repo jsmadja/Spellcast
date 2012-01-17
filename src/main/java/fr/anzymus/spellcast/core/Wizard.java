@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.anzymus.spellcast.core.creature.Creature;
+import fr.anzymus.spellcast.core.creature.Goblin;
 import fr.anzymus.spellcast.core.gestures.Gesture;
 import fr.anzymus.spellcast.core.gestures.GestureHistory;
 import fr.anzymus.spellcast.core.gestures.Gestures;
@@ -18,6 +19,8 @@ public class Wizard extends LivingEntity {
     private Player owner;
     
     private boolean invisible;
+    
+    private CreatureNameCreator creatureNameCreator = new CreatureNameCreator();
 
     private List<Creature> creatures = new ArrayList<Creature>();
     
@@ -49,6 +52,10 @@ public class Wizard extends LivingEntity {
     }
 
     public void summonCreature(Creature creature) {
+        if(creature instanceof Goblin) {
+            String goblinName = creatureNameCreator.createGoblinName();
+            creature.setName(goblinName);
+        }
         creatures.add(creature);
     }
 

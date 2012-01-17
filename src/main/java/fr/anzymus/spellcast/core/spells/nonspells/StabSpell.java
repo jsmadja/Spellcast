@@ -1,7 +1,8 @@
-package fr.anzymus.spellcast.core.spells;
+package fr.anzymus.spellcast.core.spells.nonspells;
 
 import static fr.anzymus.spellcast.core.gestures.Gesture.stab;
 import fr.anzymus.spellcast.core.LivingEntity;
+import fr.anzymus.spellcast.core.spells.AbstractSpell;
 
 public class StabSpell extends AbstractSpell {
 

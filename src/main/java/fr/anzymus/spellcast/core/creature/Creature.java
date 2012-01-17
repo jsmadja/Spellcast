@@ -14,5 +14,11 @@ public abstract class Creature extends LivingEntity {
     public Wizard getMaster() {
         return master;
     }
+
+    public void attack(LivingEntity target) {
+        target.removeHealth(getAttackPoint());
+    }
+
+    public abstract int getAttackPoint();
     
 }

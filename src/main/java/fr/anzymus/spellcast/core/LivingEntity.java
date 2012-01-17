@@ -6,14 +6,16 @@ public abstract class LivingEntity {
     
     private boolean paralyzing;
     
+    private String name;
+    
     protected LivingEntity() {
         health = getInitialHealth();
     }
     
     public abstract int getInitialHealth();
 
-    public void removeHealth(int healtPoint) {
-        health -= healtPoint;
+    public void removeHealth(int healthPoint) {
+        health -= healthPoint;
         if(health < 0) {
             health = 0;
         }
@@ -29,5 +31,18 @@ public abstract class LivingEntity {
     
     public void setParalyzing(boolean paralyzing) {
         this.paralyzing = paralyzing;
+    }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    @Override
+    public String toString() {
+        return name;
     }
 }

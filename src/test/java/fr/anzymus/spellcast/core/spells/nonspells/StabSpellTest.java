@@ -1,10 +1,11 @@
-package fr.anzymus.spellcast.core.spells;
+package fr.anzymus.spellcast.core.spells.nonspells;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
 import fr.anzymus.spellcast.core.LivingEntity;
+import fr.anzymus.spellcast.core.spells.Wizards;
 
 public class StabSpellTest {
 

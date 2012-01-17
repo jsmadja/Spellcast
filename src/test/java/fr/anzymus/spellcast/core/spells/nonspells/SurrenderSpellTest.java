@@ -1,4 +1,4 @@
-package fr.anzymus.spellcast.core.spells;
+package fr.anzymus.spellcast.core.spells.nonspells;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import fr.anzymus.spellcast.core.Player;
 import fr.anzymus.spellcast.core.Wizard;
+import fr.anzymus.spellcast.core.spells.Wizards;
 
 public class SurrenderSpellTest {
 

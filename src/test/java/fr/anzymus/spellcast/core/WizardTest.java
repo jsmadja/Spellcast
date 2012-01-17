@@ -7,8 +7,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import fr.anzymus.spellcast.core.spells.ParalysisSpell;
 import fr.anzymus.spellcast.core.spells.Spell;
+import fr.anzymus.spellcast.core.spells.enchantments.ParalysisSpell;
 
 public class WizardTest {
 

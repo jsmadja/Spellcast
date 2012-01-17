@@ -1,10 +1,11 @@
-package fr.anzymus.spellcast.core.spells;
+package fr.anzymus.spellcast.core.spells.enchantments;
 
 import static fr.anzymus.spellcast.core.gestures.Gesture.palm;
 import static fr.anzymus.spellcast.core.gestures.Gesture.snap;
 import static fr.anzymus.spellcast.core.gestures.Gesture.wave;
 import fr.anzymus.spellcast.core.LivingEntity;
 import fr.anzymus.spellcast.core.Wizard;
+import fr.anzymus.spellcast.core.spells.AbstractSpell;
 
 public class InvisibilitySpell extends AbstractSpell {
 
