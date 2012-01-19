@@ -6,7 +6,7 @@ import fr.anzymus.spellcast.core.spells.AbstractSpell;
 public abstract class DamagingSpell extends AbstractSpell {
 
     @Override
-    public void castTo(LivingEntity target) {
+    public void castTo(LivingEntity attacker, LivingEntity target) {
         target.removeHealth(getDamagePoints());
     }
 

@@ -11,7 +11,6 @@ import fr.anzymus.spellcast.core.Wizard;
 import fr.anzymus.spellcast.core.creature.Creature;
 import fr.anzymus.spellcast.core.creature.Goblin;
 import fr.anzymus.spellcast.core.spells.Wizards;
-import fr.anzymus.spellcast.core.spells.summons.SummonGoblinSpell;
 
 public class SummonGoblinSpellTest {
 
@@ -19,12 +18,14 @@ public class SummonGoblinSpellTest {
     
     @Test
     public void should_summon_a_goblin() {
-        Wizard wizard = Wizards.create();
-        List<Creature> creatures = wizard.getCreatures();
+        Wizard target = Wizards.create();
+        Wizard attacker = Wizards.create();
+        
+        List<Creature> creatures = target.getCreatures();
         assertTrue(creatures.isEmpty());
-        summonGoblinSpell.castTo(wizard);
-        assertEquals(1, wizard.getCreatures().size());
-        Creature creature = wizard.getCreatures().get(0);
+        summonGoblinSpell.castTo(attacker, target);
+        assertEquals(1, target.getCreatures().size());
+        Creature creature = target.getCreatures().get(0);
         assertTrue(creature instanceof Goblin);
         assertTrue(creature.getName().endsWith("the Goblin"));
     }

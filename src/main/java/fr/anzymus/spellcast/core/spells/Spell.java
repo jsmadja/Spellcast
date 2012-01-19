@@ -12,7 +12,7 @@ public interface Spell {
 
     List<Gestures> getGestures();
     
-    void castTo(LivingEntity target);
+    void castTo(LivingEntity attacker, LivingEntity target);
     
     String description();
 

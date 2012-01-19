@@ -13,7 +13,7 @@ public class ParalysisSpell extends AbstractSpell {
     }
 
     @Override
-    public void castTo(LivingEntity target) {
+    public void castTo(LivingEntity attacker, LivingEntity target) {
         target.setParalyzing(true);
     }
 

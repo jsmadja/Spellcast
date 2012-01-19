@@ -13,9 +13,10 @@ public class DamagingSpellTest {
     
     @Test
     public void should_remove_3_health_points() {
-        Wizard wizard = Wizards.create();
-        causeHeavyWoundsSpell.castTo(wizard);
-        assertEquals(wizard.getInitialHealth() - 3, wizard.getHealth());
+        Wizard attacker = Wizards.create();
+        Wizard target = Wizards.create();
+        causeHeavyWoundsSpell.castTo(attacker, target);
+        assertEquals(target.getInitialHealth() - 3, target.getHealth());
     }
     
 }

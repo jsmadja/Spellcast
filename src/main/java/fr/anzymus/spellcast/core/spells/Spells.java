@@ -16,6 +16,7 @@ import fr.anzymus.spellcast.core.spells.enchantments.InvisibilitySpell;
 import fr.anzymus.spellcast.core.spells.enchantments.ParalysisSpell;
 import fr.anzymus.spellcast.core.spells.nonspells.StabSpell;
 import fr.anzymus.spellcast.core.spells.nonspells.SurrenderSpell;
+import fr.anzymus.spellcast.core.spells.protection.ShieldSpell;
 import fr.anzymus.spellcast.core.spells.summons.SummonElementalSpell;
 import fr.anzymus.spellcast.core.spells.summons.SummonGiantSpell;
 import fr.anzymus.spellcast.core.spells.summons.SummonGoblinSpell;
@@ -44,6 +45,7 @@ public class Spells {
         spells.add(new SummonGiantSpell());
         spells.add(new SummonOgreSpell());
         spells.add(new SummonTrollSpell());
+        spells.add(new ShieldSpell());
         return spells;
     }
 

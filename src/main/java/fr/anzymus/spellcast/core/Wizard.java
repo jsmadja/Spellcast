@@ -3,6 +3,8 @@ package fr.anzymus.spellcast.core;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 import fr.anzymus.spellcast.core.creature.Creature;
 import fr.anzymus.spellcast.core.creature.Goblin;
 import fr.anzymus.spellcast.core.gestures.Gesture;
@@ -26,6 +28,7 @@ public class Wizard extends LivingEntity {
     
     public Wizard(Player owner) {
         super();
+        setName("Wizard "+RandomStringUtils.randomAlphabetic(5).toLowerCase());
         this.owner = owner;
     }
 
@@ -38,13 +41,14 @@ public class Wizard extends LivingEntity {
         gestureHistory.add(gestures);
     }
 
-    public Spell castSpell() {
+    public List<Spell> castSpells() {
+        List<Spell> spellsToCast = new ArrayList<Spell>();
         for (Spell spell : spells) {
             if(spell.apply(gestureHistory)) {
-                return spell;
+                spellsToCast.add(spell);
             }
         }
-        return null;
+        return spellsToCast;
     }
 
     public Player getOwner() {

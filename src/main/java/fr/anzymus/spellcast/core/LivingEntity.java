@@ -6,6 +6,10 @@ public abstract class LivingEntity {
     
     private boolean paralyzing;
     
+    private boolean shield;
+    
+    private boolean magicMirror;
+    
     private String name;
     
     protected LivingEntity() {
@@ -44,5 +48,21 @@ public abstract class LivingEntity {
     @Override
     public String toString() {
         return name;
+    }
+
+    public void setShield(boolean shield) {
+        this.shield = shield;
+    }
+
+    public boolean hasShield() {
+        return shield;
+    }
+
+    public void setMagicMirror(boolean magicMirror) {
+        this.magicMirror = magicMirror;
+    }
+
+    public boolean hasMagicMirror() {
+        return magicMirror;
     }
 }

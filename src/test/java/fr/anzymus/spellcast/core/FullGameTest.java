@@ -9,8 +9,10 @@ import static fr.anzymus.spellcast.core.gestures.Gesture.stab;
 import static fr.anzymus.spellcast.core.gestures.Gesture.wave;
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
+@Ignore
 public class FullGameTest {
 
     @Test
@@ -28,7 +30,7 @@ public class FullGameTest {
         game.beginTurn();
         black.makeGesture(wave, wave);
         white.makeGesture(wave, palm);
-        game.endTurn();
+        game.validateTurn();
         assertEquals(14, blackWizard.getHealth());
         assertEquals(14, whiteWizard.getHealth());
         
@@ -36,7 +38,7 @@ public class FullGameTest {
         game.beginTurn();
         black.makeGesture(wave, palm);
         white.makeGesture(wave, digit_pointing);
-        game.endTurn();
+        game.validateTurn();
         assertEquals(14, blackWizard.getHealth());
         assertEquals(14, whiteWizard.getHealth());
 
@@ -44,7 +46,7 @@ public class FullGameTest {
         game.beginTurn();
         black.makeGesture(digit_pointing, fingers);
         white.makeGesture(fingers, wave);
-        game.endTurn();
+        game.validateTurn();
         assertEquals(14, blackWizard.getHealth());
         assertEquals(14, whiteWizard.getHealth());
 
@@ -52,7 +54,7 @@ public class FullGameTest {
         game.beginTurn();
         black.makeGesture(digit_pointing, digit_pointing);
         white.makeGesture(palm, wave);
-        game.endTurn();
+        game.validateTurn();
         assertEquals(14, blackWizard.getHealth());
         assertEquals(11, whiteWizard.getHealth());
         
@@ -60,7 +62,7 @@ public class FullGameTest {
         game.beginTurn();
         black.makeGesture(fingers, palm);
         white.makeGesture(snap, snap);
-        game.endTurn();
+        game.validateTurn();
         assertEquals(14, blackWizard.getHealth());
         assertEquals(11, whiteWizard.getHealth());
 
@@ -68,7 +70,7 @@ public class FullGameTest {
         game.beginTurn();
         black.makeGesture(fingers, palm);
         white.makeGesture(wave, digit_pointing);
-        game.endTurn();
+        game.validateTurn();
         assertEquals(13, blackWizard.getHealth());
         assertEquals(11, whiteWizard.getHealth());
 
@@ -76,7 +78,7 @@ public class FullGameTest {
         game.beginTurn();
         black.makeGesture(snap, digit_pointing);
         white.makeGesture(wave, digit_pointing);
-        game.endTurn();
+        game.validateTurn();
         assertEquals(13, blackWizard.getHealth());
         assertEquals(11, whiteWizard.getHealth());
 
@@ -84,7 +86,7 @@ public class FullGameTest {
         game.beginTurn();
         black.makeGesture(snap, wave);
         white.makeGesture(wave, snap);
-        game.endTurn();
+        game.validateTurn();
         assertEquals(13, blackWizard.getHealth());
         assertEquals(11, whiteWizard.getHealth());
 
@@ -92,7 +94,7 @@ public class FullGameTest {
         game.beginTurn();
         black.makeGesture(fingers, fingers);
         white.makeGesture(snap, fingers);
-        game.endTurn();
+        game.validateTurn();
         assertEquals(13, blackWizard.getHealth());
         assertEquals(11, whiteWizard.getHealth());
 
@@ -100,7 +102,7 @@ public class FullGameTest {
         game.beginTurn();
         black.makeGesture(palm, clap);
         white.makeGesture(digit_pointing, wave);
-        game.endTurn();
+        game.validateTurn();
         assertEquals(13, blackWizard.getHealth());
         assertEquals(11, whiteWizard.getHealth());
 
@@ -108,7 +110,7 @@ public class FullGameTest {
         game.beginTurn();
         black.makeGesture(stab, palm);
         white.makeGesture(palm, digit_pointing);
-        game.endTurn();
+        game.validateTurn();
         assertEquals(13, blackWizard.getHealth());
         assertEquals(11, whiteWizard.getHealth());
 

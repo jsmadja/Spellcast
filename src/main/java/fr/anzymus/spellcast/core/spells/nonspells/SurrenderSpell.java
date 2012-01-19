@@ -1,8 +1,8 @@
 package fr.anzymus.spellcast.core.spells.nonspells;
 
 import static fr.anzymus.spellcast.core.gestures.Gesture.palm;
-import fr.anzymus.spellcast.core.Player;
 import fr.anzymus.spellcast.core.LivingEntity;
+import fr.anzymus.spellcast.core.Player;
 import fr.anzymus.spellcast.core.Wizard;
 import fr.anzymus.spellcast.core.spells.AbstractSpell;
 
@@ -13,7 +13,7 @@ public class SurrenderSpell extends AbstractSpell {
     }
 
     @Override
-    public void castTo(LivingEntity target) {
+    public void castTo(LivingEntity attacker, LivingEntity target) {
         if(target instanceof Wizard) {
             Wizard wizard = (Wizard) target;
             Player player = wizard.getOwner();

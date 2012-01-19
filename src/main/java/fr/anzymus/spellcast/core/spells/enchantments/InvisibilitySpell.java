@@ -17,7 +17,7 @@ public class InvisibilitySpell extends AbstractSpell {
     }
 
     @Override
-    public void castTo(LivingEntity target) {
+    public void castTo(LivingEntity attacker, LivingEntity target) {
         if(target instanceof Wizard) {
             Wizard wizard = (Wizard) target;
             wizard.setInvisible(true);

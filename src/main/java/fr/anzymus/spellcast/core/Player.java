@@ -1,8 +1,14 @@
 package fr.anzymus.spellcast.core;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import fr.anzymus.spellcast.core.gestures.Gesture;
+import fr.anzymus.spellcast.core.spells.Spell;
 
 public class Player {
+
+    private Logger log = LoggerFactory.getLogger(Player.class);
 
     private Wizard wizard = new Wizard(this);
     private String name;
@@ -40,5 +46,12 @@ public class Player {
     @Override
     public String toString() {
         return name;
+    }
+
+    public void cast(Spell spell, LivingEntity target) {
+        if(spell != null) {
+            log.info(this+" cast "+spell.getClass().getSimpleName()+" to "+target);
+            spell.castTo(wizard, target);
+        }
     }
 }

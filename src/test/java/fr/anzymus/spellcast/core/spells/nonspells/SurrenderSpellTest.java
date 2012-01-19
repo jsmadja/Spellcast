@@ -18,7 +18,7 @@ public class SurrenderSpellTest {
         Wizard wizard = Wizards.create();
         Player player = wizard.getOwner();
         assertFalse(player.hasSurrendered());
-        surrenderSpell.castTo(wizard);
+        surrenderSpell.castTo(wizard, wizard);
         assertTrue(player.hasSurrendered());
     }
     

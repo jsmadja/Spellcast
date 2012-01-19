@@ -8,7 +8,7 @@ import fr.anzymus.spellcast.core.spells.AbstractSpell;
 public abstract class SummonSpell extends AbstractSpell {
 
     @Override
-    public void castTo(LivingEntity target) {
+    public void castTo(LivingEntity attacker, LivingEntity target) {
         if(target instanceof Wizard) {
             Wizard wizard = (Wizard) target;
             Creature creature = summonCreature(wizard);

@@ -3,13 +3,16 @@ package fr.anzymus.spellcast.core;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Joiner;
 
+import fr.anzymus.spellcast.core.creature.Creature;
 import fr.anzymus.spellcast.core.gestures.Gestures;
 import fr.anzymus.spellcast.core.spells.Spell;
 import fr.anzymus.spellcast.core.spells.Spells;
@@ -43,6 +46,10 @@ public class Game {
     }
 
     public void beginTurn() {
+        if(players.size() < 2) {
+            throw new IllegalStateException("Game cannot begin without at least 2 players");
+        }
+        
         turn++;
         log.info("----------------------------------------------------------");
         log.info(turn.toString());
@@ -54,28 +61,43 @@ public class Game {
         log.info(Joiner.on('\t').join(wizardNames));
     }
 
-    public void endTurn() {
+    public Map<Player, List<Spell>> validateTurn() {
+        Map<Player, List<Spell>> decisions = new HashMap<Player, List<Spell>>();
+        for (Player player : players) {
+            List<Spell> spellsToCast = detectSpellsToCast(player);
+            decisions.put(player, spellsToCast);
+        }
+        return decisions;
+    }
+
+    private List<Spell> detectSpellsToCast(Player player) {
+        Wizard wizard = player.getWizard();
+        Gestures lastGestures = wizard.getGestureHistory().lastGestures();
+        if (lastGestures == null) {
+            throw new IllegalStateException("A turn cannot end if player "+player+" has not made any gesture");
+        }
+        log.info(lastGestures.toString());
+        List<Spell> spellsToCast = wizard.castSpells();
+        return spellsToCast;
+    }
+
+    private void spellPostProcess() {
+        removeShields();
+    }
+
+    private void removeShields() {
         for (Player player : players) {
             Wizard wizard = player.getWizard();
-            Gestures lastGestures = wizard.getGestureHistory().lastGestures();
-            log.info(lastGestures.toString());
-            Spell spell = wizard.castSpell();
-            if(spell != null) {
-                LivingEntity target = otherPlayer(player);
-                log.info(player+" cast "+spell.getClass().getSimpleName()+" to "+target);
-                spell.castTo(target);
+            wizard.setShield(false);
+            List<Creature> creatures = wizard.getCreatures();
+            for (Creature creature : creatures) {
+                creature.setShield(false);
             }
-            
         }
     }
 
-    private LivingEntity otherPlayer(Player player) {
-        for(Player p:players) {
-            if(!p.equals(player)) {
-                return p.getWizard();
-            }
-        }
-        return null;
+    public void endTurn() {
+        spellPostProcess();
     }
 
 }

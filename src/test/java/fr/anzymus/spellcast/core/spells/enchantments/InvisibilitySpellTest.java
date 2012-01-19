@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import fr.anzymus.spellcast.core.Wizard;
 import fr.anzymus.spellcast.core.spells.Wizards;
-import fr.anzymus.spellcast.core.spells.enchantments.InvisibilitySpell;
 
 public class InvisibilitySpellTest {
 
@@ -15,10 +14,12 @@ public class InvisibilitySpellTest {
 
     @Test
     public void should_cast_invisibility() {
-        Wizard wizard = Wizards.create(); 
-        assertFalse(wizard.isInvisible());
-        invisibilitySpell.castTo(wizard);
-        assertTrue(wizard.isInvisible());
+        Wizard target = Wizards.create();
+        Wizard attacker = Wizards.create();
+        
+        assertFalse(target.isInvisible());
+        invisibilitySpell.castTo(attacker, target);
+        assertTrue(target.isInvisible());
     }
     
 }

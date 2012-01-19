@@ -5,6 +5,8 @@ import static fr.anzymus.spellcast.core.gestures.Gesture.nothing;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
+
 import org.junit.Test;
 
 import fr.anzymus.spellcast.core.spells.Spell;
@@ -18,8 +20,8 @@ public class WizardTest {
         wizard.makeGesture(fingers, nothing);
         wizard.makeGesture(fingers, nothing);
         wizard.makeGesture(fingers, nothing);
-        Spell spell = wizard.castSpell();
-        assertTrue(spell instanceof ParalysisSpell);
+        List<Spell> spells = wizard.castSpells();
+        assertTrue(spells.get(0) instanceof ParalysisSpell);
     }
     
     @Test

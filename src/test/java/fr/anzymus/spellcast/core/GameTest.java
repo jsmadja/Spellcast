@@ -14,7 +14,9 @@ import org.junit.Test;
 
 import fr.anzymus.spellcast.core.gestures.GestureHistory;
 import fr.anzymus.spellcast.core.gestures.Gestures;
-import fr.anzymus.spellcast.core.spells.nonspells.StabSpell;
+import fr.anzymus.spellcast.core.spells.Spell;
+import fr.anzymus.spellcast.core.spells.Wizards;
+import fr.anzymus.spellcast.core.spells.protection.ShieldSpell;
 
 public class GameTest {
 
@@ -85,10 +87,10 @@ public class GameTest {
     
     @Test
     public void should_execute_spell_to_a_target() {
-        StabSpell stabSpell = new StabSpell();
-        Wizard target = new Wizard(new Player("name"));
-        int initialHealth = target.getHealth();
-        stabSpell.castTo(target);
-        assertEquals(initialHealth - 1, target.getHealth());
+        Spell shieldSpell = new ShieldSpell();
+        Wizard target = Wizards.create();
+        shieldSpell.castTo(target,target);
+        assertTrue(target.hasShield());
     }
+    
 }

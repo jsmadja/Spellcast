@@ -9,7 +9,6 @@ import fr.anzymus.spellcast.core.Wizard;
 import fr.anzymus.spellcast.core.creature.Creature;
 import fr.anzymus.spellcast.core.spells.Creatures;
 import fr.anzymus.spellcast.core.spells.Wizards;
-import fr.anzymus.spellcast.core.spells.enchantments.ParalysisSpell;
 
 public class ParalysisSpellTest {
 
@@ -19,15 +18,16 @@ public class ParalysisSpellTest {
     public void should_paralysis_wizard() {
         Wizard wizard = Wizards.create();
         assertFalse(wizard.isParalyzing());
-        paralysisSpell.castTo(wizard);
+        paralysisSpell.castTo(wizard,wizard);
         assertTrue(wizard.isParalyzing());
     }
     
     @Test
     public void should_paralysis_creature() {
+        Wizard wizard = Wizards.create();
         Creature creature = Creatures.create();
         assertFalse(creature.isParalyzing());
-        paralysisSpell.castTo(creature);
+        paralysisSpell.castTo(wizard, creature);
         assertTrue(creature.isParalyzing());
     }
 }

@@ -18,7 +18,7 @@ public class SummonGoblinSpell extends AbstractSpell {
     }
     
     @Override
-    public void castTo(LivingEntity target) {
+    public void castTo(LivingEntity attacker, LivingEntity target) {
         if(target instanceof Wizard) {
             Wizard wizard = (Wizard) target;
             Creature creature = new Goblin(wizard);
