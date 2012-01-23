@@ -1,11 +1,10 @@
-package fr.anzymus.spellcast.core.spells.damaging;
+package fr.anzymus.spellcast.core.spells.damaging.fire;
 
 import static fr.anzymus.spellcast.core.gestures.Gesture.clap;
 import static fr.anzymus.spellcast.core.gestures.Gesture.snap;
 import static fr.anzymus.spellcast.core.gestures.Gesture.wave;
 
-
-public class FireStormSpell extends DamagingSpell {
+public class FireStormSpell extends FireDamagingSpell {
 
     public FireStormSpell() {
         spellGestures.add(snap);
@@ -13,7 +12,7 @@ public class FireStormSpell extends DamagingSpell {
         spellGestures.add(wave);
         spellGestures.add(clap);
     }
-    
+
     protected int getDamagePoints() {
         return 5;
     }

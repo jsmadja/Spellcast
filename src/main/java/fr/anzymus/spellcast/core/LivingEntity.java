@@ -11,6 +11,8 @@ public abstract class LivingEntity {
     private boolean magicMirror;
     
     private String name;
+
+    private boolean resistHeat;
     
     protected LivingEntity() {
         health = getInitialHealth();
@@ -64,5 +66,13 @@ public abstract class LivingEntity {
 
     public boolean hasMagicMirror() {
         return magicMirror;
+    }
+
+    public void setResistHeat(boolean resistHeaht) {
+        this.resistHeat = true;
+    }
+    
+    public boolean isResistHeat() {
+        return resistHeat;
     }
 }

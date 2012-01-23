@@ -3,9 +3,7 @@ package fr.anzymus.spellcast.core;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +14,7 @@ import fr.anzymus.spellcast.core.creature.Creature;
 import fr.anzymus.spellcast.core.gestures.Gestures;
 import fr.anzymus.spellcast.core.spells.Spell;
 import fr.anzymus.spellcast.core.spells.Spells;
+import fr.anzymus.spellcast.core.turn.Decision;
 
 public class Game {
 
@@ -61,11 +60,13 @@ public class Game {
         log.info(Joiner.on('\t').join(wizardNames));
     }
 
-    public Map<Player, List<Spell>> validateTurn() {
-        Map<Player, List<Spell>> decisions = new HashMap<Player, List<Spell>>();
+    public List<Decision> validateTurn() {
+        List<Decision> decisions = new ArrayList<Decision>();
         for (Player player : players) {
             List<Spell> spellsToCast = detectSpellsToCast(player);
-            decisions.put(player, spellsToCast);
+            for(Spell spellToCast:spellsToCast) {
+                decisions.add(new Decision(player, spellToCast));
+            }
         }
         return decisions;
     }

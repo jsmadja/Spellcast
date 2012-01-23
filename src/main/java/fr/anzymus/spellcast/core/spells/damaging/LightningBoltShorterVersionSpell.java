@@ -12,7 +12,7 @@ public class LightningBoltShorterVersionSpell extends DamagingSpell {
         spellGestures.add(digit_pointing);
         spellGestures.add(digit_pointing);
         spellGestures.add(clap);
-        usableOnlyOnce = true;
+        usableOnlyOnceByGame = true;
     }
     
     protected int getDamagePoints() {
