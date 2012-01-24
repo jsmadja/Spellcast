@@ -62,7 +62,9 @@ public class FullGameTest {
         black.makeGesture(digit_pointing, digit_pointing);
         white.makeGesture(palm, wave);
         List<Decision> decisions = game.validateTurn();
+        // white becomes fire resistant
         decisions.get(0).to(whiteWizard);
+        decisions.get(2).to(whiteWizard);
         
         game.endTurn();
         assertEquals(14, blackWizard.getHealth());

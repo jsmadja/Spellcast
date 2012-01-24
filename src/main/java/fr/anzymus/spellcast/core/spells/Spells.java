@@ -12,6 +12,7 @@ import fr.anzymus.spellcast.core.spells.damaging.LightningBoltSpell;
 import fr.anzymus.spellcast.core.spells.damaging.MissileSpell;
 import fr.anzymus.spellcast.core.spells.damaging.fire.FireStormSpell;
 import fr.anzymus.spellcast.core.spells.damaging.fire.FireballSpell;
+import fr.anzymus.spellcast.core.spells.enchantments.AmnesiaSpell;
 import fr.anzymus.spellcast.core.spells.enchantments.InvisibilitySpell;
 import fr.anzymus.spellcast.core.spells.enchantments.ParalysisSpell;
 import fr.anzymus.spellcast.core.spells.nonspells.StabSpell;
@@ -27,25 +28,26 @@ public class Spells {
 
     public static List<Spell> createList() {
         List<Spell> spells = new ArrayList<Spell>();
-        spells.add(new ParalysisSpell());
-        spells.add(new SurrenderSpell());
-        spells.add(new InvisibilitySpell());
-        spells.add(new StabSpell());
-        spells.add(new SummonGoblinSpell());
+        spells.add(new AmnesiaSpell());
         spells.add(new CauseHeavyWoundsSpell());
-        spells.add(new MissileSpell());
         spells.add(new CauseLightWoundsSpell());
         spells.add(new FingerOfDeathSpell());
         spells.add(new FireballSpell());
         spells.add(new FireStormSpell());
         spells.add(new IceStormSpell());
+        spells.add(new InvisibilitySpell());
         spells.add(new LightningBoltShorterVersionSpell());
         spells.add(new LightningBoltSpell());
+        spells.add(new MissileSpell());
+        spells.add(new ParalysisSpell());
+        spells.add(new ShieldSpell());
+        spells.add(new StabSpell());
         spells.add(new SummonElementalSpell());
         spells.add(new SummonGiantSpell());
+        spells.add(new SummonGoblinSpell());
         spells.add(new SummonOgreSpell());
         spells.add(new SummonTrollSpell());
-        spells.add(new ShieldSpell());
+        spells.add(new SurrenderSpell());
         return spells;
     }
 

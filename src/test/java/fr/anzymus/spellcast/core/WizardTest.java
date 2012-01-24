@@ -1,7 +1,10 @@
 package fr.anzymus.spellcast.core;
 
+import static fr.anzymus.spellcast.core.gestures.Gesture.clap;
 import static fr.anzymus.spellcast.core.gestures.Gesture.fingers;
 import static fr.anzymus.spellcast.core.gestures.Gesture.nothing;
+import static fr.anzymus.spellcast.core.gestures.Gesture.palm;
+import static fr.anzymus.spellcast.core.gestures.Gesture.snap;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -9,7 +12,9 @@ import java.util.List;
 
 import org.junit.Test;
 
-import fr.anzymus.spellcast.core.spells.Spell;
+import fr.anzymus.spellcast.core.gestures.Gestures;
+import fr.anzymus.spellcast.core.spells.CastableSpell;
+import fr.anzymus.spellcast.core.spells.Wizards;
 import fr.anzymus.spellcast.core.spells.enchantments.ParalysisSpell;
 
 public class WizardTest {
@@ -20,8 +25,8 @@ public class WizardTest {
         wizard.makeGesture(fingers, nothing);
         wizard.makeGesture(fingers, nothing);
         wizard.makeGesture(fingers, nothing);
-        List<Spell> spells = wizard.castSpells();
-        assertTrue(spells.get(0) instanceof ParalysisSpell);
+        List<CastableSpell> spells = wizard.castSpells();
+        assertTrue(spells.get(0).getSpell() instanceof ParalysisSpell);
     }
     
     @Test
@@ -37,5 +42,24 @@ public class WizardTest {
         Wizard wizard = new Wizard(new Player("name"));
         wizard.removeHealth(30);
         assertEquals(0, wizard.getHealth());
+    }
+    
+    @Test
+    public void should_repeat_last_gestures() {
+        Wizard wizard = Wizards.create();
+        wizard.makeGesture(snap, clap);
+        wizard.makeGesture(palm, palm);
+        
+        assertEquals(2, wizard.getGestureHistory().size());
+        Gestures lastGesture = wizard.getGestureHistory().getLastGestures();
+        assertEquals(palm, lastGesture.getLeftHandGesture());
+        assertEquals(palm, lastGesture.getRightHandGesture());
+
+        wizard.replaceGesturesByLastGestures();
+
+        assertEquals(2, wizard.getGestureHistory().size());
+        lastGesture = wizard.getGestureHistory().getLastGestures();
+        assertEquals(snap, lastGesture.getLeftHandGesture());
+        assertEquals(clap, lastGesture.getRightHandGesture());
     }
 }

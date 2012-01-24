@@ -12,7 +12,7 @@ import com.google.common.base.Joiner;
 
 import fr.anzymus.spellcast.core.creature.Creature;
 import fr.anzymus.spellcast.core.gestures.Gestures;
-import fr.anzymus.spellcast.core.spells.Spell;
+import fr.anzymus.spellcast.core.spells.CastableSpell;
 import fr.anzymus.spellcast.core.spells.Spells;
 import fr.anzymus.spellcast.core.turn.Decision;
 
@@ -23,9 +23,13 @@ public class Game {
     private List<Player> players = new ArrayList<Player>();
 
     private Integer turn=0;
+
+    private boolean printSpellsAtBeginning = false;
     
     public Game() {
+        if(printSpellsAtBeginning ) {
         Spells.printSpellsInForwardOrder();
+        }
     }
     
     public Player createNewPlayer(String name) throws PlayerNotCreatedException {
@@ -61,25 +65,47 @@ public class Game {
     }
 
     public List<Decision> validateTurn() {
+        spellPreprocess();
         List<Decision> decisions = new ArrayList<Decision>();
         for (Player player : players) {
-            List<Spell> spellsToCast = detectSpellsToCast(player);
-            for(Spell spellToCast:spellsToCast) {
+            List<CastableSpell> spellsToCast = detectSpellsToCast(player);
+            for(CastableSpell spellToCast:spellsToCast) {
                 decisions.add(new Decision(player, spellToCast));
             }
         }
+        printDecisions(decisions);
         return decisions;
     }
 
-    private List<Spell> detectSpellsToCast(Player player) {
+    private void printDecisions(List<Decision> decisions) {
+        for(Decision decision:decisions) {
+            log.info(decision.toString());
+        }
+    }
+
+    private List<CastableSpell> detectSpellsToCast(Player player) {
         Wizard wizard = player.getWizard();
         Gestures lastGestures = wizard.getGestureHistory().lastGestures();
         if (lastGestures == null) {
             throw new IllegalStateException("A turn cannot end if player "+player+" has not made any gesture");
         }
         log.info(lastGestures.toString());
-        List<Spell> spellsToCast = wizard.castSpells();
+        List<CastableSpell> spellsToCast = wizard.castSpells();
         return spellsToCast;
+    }
+
+    private void spellPreprocess() {
+        repeatIdenticallyGesturesForAmnesics();
+    }
+
+    private void repeatIdenticallyGesturesForAmnesics() {
+        for (Player player : players) {
+            Wizard wizard = player.getWizard();
+            if(wizard.isAmnesic()) {
+                wizard.replaceGesturesByLastGestures();
+                wizard.setAmnesic(false);
+            }
+        }
     }
 
     private void spellPostProcess() {

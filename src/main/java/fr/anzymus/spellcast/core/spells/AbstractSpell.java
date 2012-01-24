@@ -5,8 +5,11 @@ import static fr.anzymus.spellcast.core.gestures.Gesture.anything;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.google.common.base.Joiner;
 
+import fr.anzymus.spellcast.core.Hand;
 import fr.anzymus.spellcast.core.gestures.Gesture;
 import fr.anzymus.spellcast.core.gestures.GestureHistory;
 import fr.anzymus.spellcast.core.gestures.Gestures;
@@ -23,18 +26,24 @@ public abstract class AbstractSpell implements Spell {
     }
     
     @Override
-    public boolean apply(GestureHistory gestureHistory) {
+    public Hand apply(GestureHistory gestureHistory) {
         if(gestureHistory == null) {
-            return false;
+            return Hand.none;
         }
         List<Gestures> wizardGestures = gestureHistory.getLastGestures(spellGestures.size());
         if(wizardGestures.size() < spellGestures.size()) {
-            return false;
+            return Hand.none;
         }
         if(isOneHandedSpell()) {
-            return applyToLeftHand(wizardGestures) || applyToRightHand(wizardGestures);
+            if(applyToLeftHand(wizardGestures)) {
+                return Hand.left;
+            }
+            if(applyToRightHand(wizardGestures)) {
+                return Hand.right;
+            }
+            return Hand.none;
         } else {
-            return applyToHands(wizardGestures);
+            return applyToHands(wizardGestures)?Hand.both:Hand.none;
         }
     }
 
@@ -130,5 +139,12 @@ public abstract class AbstractSpell implements Spell {
     
     public boolean isUsableOnlyOnceByGame() {
         return usableOnlyOnceByGame;
+    }
+    
+    @Override
+    public String name() {
+        String className = this.getClass().getSimpleName();
+        String spellName = StringUtils.remove(className, "Spell");
+        return spellName;
     }
 }

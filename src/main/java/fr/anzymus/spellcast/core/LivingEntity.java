@@ -13,6 +13,8 @@ public abstract class LivingEntity {
     private String name;
 
     private boolean resistHeat;
+
+    private boolean amnesic;
     
     protected LivingEntity() {
         health = getInitialHealth();
@@ -74,5 +76,13 @@ public abstract class LivingEntity {
     
     public boolean isResistHeat() {
         return resistHeat;
+    }
+
+    public boolean isAmnesic() {
+        return amnesic;
+    }
+
+    public void setAmnesic(boolean amnesic) {
+        this.amnesic = amnesic;
     }
 }

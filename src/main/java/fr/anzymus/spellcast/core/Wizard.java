@@ -10,6 +10,7 @@ import fr.anzymus.spellcast.core.creature.Goblin;
 import fr.anzymus.spellcast.core.gestures.Gesture;
 import fr.anzymus.spellcast.core.gestures.GestureHistory;
 import fr.anzymus.spellcast.core.gestures.Gestures;
+import fr.anzymus.spellcast.core.spells.CastableSpell;
 import fr.anzymus.spellcast.core.spells.Spell;
 import fr.anzymus.spellcast.core.spells.Spells;
 
@@ -41,11 +42,13 @@ public class Wizard extends LivingEntity {
         gestureHistory.add(gestures);
     }
 
-    public List<Spell> castSpells() {
-        List<Spell> spellsToCast = new ArrayList<Spell>();
+    public List<CastableSpell> castSpells() {
+        List<CastableSpell> spellsToCast = new ArrayList<CastableSpell>();
         for (Spell spell : spells) {
-            if(spell.apply(gestureHistory)) {
-                spellsToCast.add(spell);
+            Hand hand = spell.apply(gestureHistory);
+            if(hand != Hand.none) {
+                CastableSpell castableSpell = new CastableSpell(spell, hand);
+                spellsToCast.add(castableSpell);
             }
         }
         return spellsToCast;
@@ -77,7 +80,13 @@ public class Wizard extends LivingEntity {
     }
 
     public List<Creature> getCreatures() {
-        return creatures ;
+        return creatures;
+    }
+
+    public void replaceGesturesByLastGestures() {
+        gestureHistory.removeLastGestures();
+        Gestures lastGestures = gestureHistory.getLastGestures();
+        gestureHistory.add(lastGestures);
     }
     
 }

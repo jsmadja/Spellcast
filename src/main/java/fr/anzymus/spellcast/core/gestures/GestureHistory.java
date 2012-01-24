@@ -36,6 +36,12 @@ public class GestureHistory {
         return gestureStack.subList(begin, end);
     }
     
+
+    public Gestures getLastGestures() {
+        List<Gestures> lastGestures = getLastGestures(1);
+        return lastGestures.isEmpty() ? null : lastGestures.get(0);
+    }
+    
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder("Gesture History").append("\n");
@@ -45,6 +51,17 @@ public class GestureHistory {
             builder.append(leftHandGesture).append(" ").append(rightHandGesture).append("\n");
         }
         return builder.toString();
+    }
+
+    public int size() {
+        return gestureStack.size();
+    }
+
+    public Gestures removeLastGestures() {
+        if(!gestureStack.isEmpty()) {
+            return gestureStack.pop();
+        }
+        return null;
     }
 
 }
