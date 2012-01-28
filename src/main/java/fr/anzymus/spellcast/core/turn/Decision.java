@@ -10,6 +10,7 @@ public class Decision {
 
     private Player player;
     private CastableSpell castableSpell;
+    private LivingEntity target;
 
     public Decision(Player player, CastableSpell spell) {
         this.player = player;
@@ -35,7 +36,7 @@ public class Decision {
     }
 
     public void to(LivingEntity target) {
-        player.cast(castableSpell.getSpell(), target);
+        this.target = target;
     }
 
     public CastableSpell getCastableSpell() {
@@ -45,10 +46,23 @@ public class Decision {
     public Player getPlayer() {
         return player;
     }
+    
+    public LivingEntity getTarget() {
+        return target;
+    }
 
     @Override
     public String toString() {
         return  player+" could cast "+castableSpell.getSpell().name()+" with his "+castableSpell.getHand()+" hand";
+    }
+
+    public void apply() {
+        Spell spell = castableSpell.getSpell();
+        if(target == null) {
+            String spellName = spell.name();
+            throw new IllegalStateException("Player "+player+" must choose a target for his "+spellName+" spell");
+        }
+        player.cast(spell, target);        
     }
     
 }

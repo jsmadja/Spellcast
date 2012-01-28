@@ -1,5 +1,10 @@
 package fr.anzymus.spellcast.core;
 
+import static fr.anzymus.spellcast.core.Hand.both;
+import static fr.anzymus.spellcast.core.Hand.left;
+import static fr.anzymus.spellcast.core.Hand.none;
+import static fr.anzymus.spellcast.core.Hand.right;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,21 +25,21 @@ public class Wizard extends LivingEntity {
 
     private List<Spell> spells = Spells.createList();
     private Player owner;
-    
+
     private boolean invisible;
-    
+
     private CreatureNameCreator creatureNameCreator = new CreatureNameCreator();
 
     private List<Creature> creatures = new ArrayList<Creature>();
-    
+
     public Wizard(Player owner) {
         super();
-        setName("Wizard "+RandomStringUtils.randomAlphabetic(5).toLowerCase());
+        setName("Wizard " + RandomStringUtils.randomAlphabetic(5).toLowerCase());
         this.owner = owner;
     }
 
     public GestureHistory getGestureHistory() {
-        return gestureHistory ;
+        return gestureHistory;
     }
 
     public void makeGesture(Gesture leftHandGesture, Gesture rightHandGesture) {
@@ -43,12 +48,17 @@ public class Wizard extends LivingEntity {
     }
 
     public List<CastableSpell> castSpells() {
+        boolean isLeftHandUsed = false;
+        boolean isRightHandUsed = false;
         List<CastableSpell> spellsToCast = new ArrayList<CastableSpell>();
         for (Spell spell : spells) {
             Hand hand = spell.apply(gestureHistory);
-            if(hand != Hand.none) {
+            boolean isCastable = hand != none && (hand == left && !isLeftHandUsed) || (hand == right && !isRightHandUsed);
+            if (isCastable) {
                 CastableSpell castableSpell = new CastableSpell(spell, hand);
                 spellsToCast.add(castableSpell);
+                isLeftHandUsed = hand == left || hand == both;
+                isRightHandUsed = hand == right || hand == both;
             }
         }
         return spellsToCast;
@@ -59,7 +69,7 @@ public class Wizard extends LivingEntity {
     }
 
     public void summonCreature(Creature creature) {
-        if(creature instanceof Goblin) {
+        if (creature instanceof Goblin) {
             String goblinName = creatureNameCreator.createGoblinName();
             creature.setName(goblinName);
         }
@@ -88,5 +98,5 @@ public class Wizard extends LivingEntity {
         Gestures lastGestures = gestureHistory.getLastGestures();
         gestureHistory.add(lastGestures);
     }
-    
+
 }

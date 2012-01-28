@@ -142,6 +142,11 @@ public abstract class AbstractSpell implements Spell {
     }
     
     @Override
+    public Integer getPriority() {
+        return Integer.MAX_VALUE;
+    }
+    
+    @Override
     public String name() {
         String className = this.getClass().getSimpleName();
         String spellName = StringUtils.remove(className, "Spell");

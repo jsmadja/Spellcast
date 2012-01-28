@@ -15,6 +15,8 @@ public abstract class LivingEntity {
     private boolean resistHeat;
 
     private boolean amnesic;
+
+    private boolean counterSpell;
     
     protected LivingEntity() {
         health = getInitialHealth();
@@ -84,5 +86,13 @@ public abstract class LivingEntity {
 
     public void setAmnesic(boolean amnesic) {
         this.amnesic = amnesic;
+    }
+
+    public boolean hasCounterSpell() {
+        return counterSpell;
+    }
+
+    public void setCounterSpell(boolean counterSpell) {
+        this.counterSpell = counterSpell;
     }
 }

@@ -10,10 +10,6 @@ public class GestureHistory {
 
     private Stack<Gestures> gestureStack = new Stack<Gestures>();
 
-    public Gestures lastGestures() {
-        return gestureStack.peek();
-    }
-
     public void add(Gesture leftGesture) {
         add(new Gestures(leftGesture, nothing));
     }

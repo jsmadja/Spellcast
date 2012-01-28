@@ -68,7 +68,7 @@ public class GameTest {
         Player player = game.createNewPlayer("player");
         player.makeGesture(fingers, palm);
         GestureHistory gestureHistory = player.getWizard().getGestureHistory();
-        Gestures gestures = gestureHistory.lastGestures();
+        Gestures gestures = gestureHistory.getLastGestures();
         assertEquals(fingers, gestures.getLeftHandGesture());
         assertEquals(palm, gestures.getRightHandGesture());
     }
@@ -80,7 +80,7 @@ public class GameTest {
         player.makeGesture(fingers, palm);
         player.makeGesture(snap, wave);
         GestureHistory gestureHistory = player.getWizard().getGestureHistory();
-        Gestures gestures = gestureHistory.lastGestures();
+        Gestures gestures = gestureHistory.getLastGestures();
         assertEquals(snap, gestures.getLeftHandGesture());
         assertEquals(wave, gestures.getRightHandGesture());
     }

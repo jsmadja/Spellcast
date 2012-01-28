@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import fr.anzymus.spellcast.core.LivingEntity;
 import fr.anzymus.spellcast.core.Wizard;
+import fr.anzymus.spellcast.core.spells.Creatures;
 import fr.anzymus.spellcast.core.spells.Wizards;
 
 public class CreatureTest {
@@ -20,9 +21,8 @@ public class CreatureTest {
     
     @Test
     public void should_attack_living_entity() {
-        Wizard wizard = Wizards.create();
         LivingEntity target = Wizards.create();
-        Creature creature = new Goblin(wizard);
+        Creature creature = Creatures.create();
         creature.attack(target);
         assertEquals(target.getInitialHealth() - creature.getAttackPoint(), target.getHealth());
     }

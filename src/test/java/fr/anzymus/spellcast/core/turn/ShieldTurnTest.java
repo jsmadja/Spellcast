@@ -6,14 +6,14 @@ import static fr.anzymus.spellcast.core.gestures.Gesture.stab;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
-import java.util.List;
-
 import org.junit.Test;
 
 import fr.anzymus.spellcast.core.Game;
 import fr.anzymus.spellcast.core.Player;
 import fr.anzymus.spellcast.core.PlayerNotCreatedException;
 import fr.anzymus.spellcast.core.Wizard;
+import fr.anzymus.spellcast.core.spells.nonspells.StabSpell;
+import fr.anzymus.spellcast.core.spells.protection.ShieldSpell;
 
 public class ShieldTurnTest {
 
@@ -39,9 +39,9 @@ public class ShieldTurnTest {
         game.beginTurn();
         player1.makeGesture(palm, nothing);
         player2.makeGesture(stab, nothing);
-        List<Decision> decisions = game.validateTurn();
-        decisions.get(0).to(wizard1);
-        decisions.get(1).to(wizard1);
+        Decisions decisions = game.validateTurn();
+        decisions.cast(player1, ShieldSpell.class).to(wizard1);
+        decisions.cast(player2, StabSpell.class).to(wizard1);
         game.endTurn();
         
         assertEquals(wizard1.getInitialHealth(), wizard1.getHealth());

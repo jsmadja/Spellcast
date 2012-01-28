@@ -20,5 +20,7 @@ public interface Spell {
     String name();
 
     boolean isUsableOnlyOnceByGame();
+    
+    Integer getPriority();
 
 }

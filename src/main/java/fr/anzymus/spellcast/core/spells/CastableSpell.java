@@ -8,7 +8,6 @@ public class CastableSpell {
     private Hand hand;
 
     public CastableSpell(Spell spell, Hand hand) {
-        super();
         this.spell = spell;
         this.hand = hand;
     }
@@ -21,4 +20,9 @@ public class CastableSpell {
         return hand;
     }
 
+    @Override
+    public String toString() {
+        return spell.name()+" can be casted with "+hand+" hand"+(hand==Hand.both?"s":"");
+    }
+    
 }

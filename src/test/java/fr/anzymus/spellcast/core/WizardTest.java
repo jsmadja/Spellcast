@@ -5,6 +5,7 @@ import static fr.anzymus.spellcast.core.gestures.Gesture.fingers;
 import static fr.anzymus.spellcast.core.gestures.Gesture.nothing;
 import static fr.anzymus.spellcast.core.gestures.Gesture.palm;
 import static fr.anzymus.spellcast.core.gestures.Gesture.snap;
+import static fr.anzymus.spellcast.core.gestures.Gesture.wave;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -16,6 +17,7 @@ import fr.anzymus.spellcast.core.gestures.Gestures;
 import fr.anzymus.spellcast.core.spells.CastableSpell;
 import fr.anzymus.spellcast.core.spells.Wizards;
 import fr.anzymus.spellcast.core.spells.enchantments.ParalysisSpell;
+import fr.anzymus.spellcast.core.spells.enchantments.ResistHeatSpell;
 
 public class WizardTest {
 
@@ -61,5 +63,20 @@ public class WizardTest {
         lastGesture = wizard.getGestureHistory().getLastGestures();
         assertEquals(snap, lastGesture.getLeftHandGesture());
         assertEquals(clap, lastGesture.getRightHandGesture());
+    }
+    
+    @Test
+    public void should_cast_the_longer_spell() {
+        Wizard wizard = Wizards.create();
+        wizard.makeGesture(wave, nothing);
+        wizard.makeGesture(wave, nothing);
+        wizard.makeGesture(fingers, nothing);
+        wizard.makeGesture(palm, nothing);
+        List<CastableSpell> castableSpells = wizard.castSpells();
+        for (CastableSpell castableSpell : castableSpells) {
+            System.out.println(castableSpell);
+        }
+        assertEquals(1, castableSpells.size());
+        assertEquals(ResistHeatSpell.class, castableSpells.get(0).getSpell().getClass());
     }
 }

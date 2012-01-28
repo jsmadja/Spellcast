@@ -7,7 +7,9 @@ public abstract class DamagingSpell extends AbstractSpell {
 
     @Override
     public void castTo(LivingEntity attacker, LivingEntity target) {
-        target.removeHealth(getDamagePoints());
+        if(!target.hasCounterSpell()) {
+            target.removeHealth(getDamagePoints());
+        }
     }
 
     protected abstract int getDamagePoints();
