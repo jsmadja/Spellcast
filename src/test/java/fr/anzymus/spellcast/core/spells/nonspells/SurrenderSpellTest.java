@@ -5,7 +5,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import fr.anzymus.spellcast.core.Player;
 import fr.anzymus.spellcast.core.Wizard;
 import fr.anzymus.spellcast.core.spells.Wizards;
 
@@ -15,10 +14,9 @@ public class SurrenderSpellTest {
     
     @Test
     public void should_surrend_a_wizard() {
-        Wizard wizard = Wizards.create();
-        Player player = wizard.getOwner();
+        Wizard player = Wizards.create();
         assertFalse(player.hasSurrendered());
-        surrenderSpell.castTo(wizard, wizard);
+        surrenderSpell.castTo(player, player);
         assertTrue(player.hasSurrendered());
     }
     

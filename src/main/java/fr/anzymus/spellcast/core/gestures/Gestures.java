@@ -18,6 +18,14 @@ public class Gestures {
         return rightHandGesture;
     }
     
+    public void setLeftHandGesture(Gesture leftHandGesture) {
+        this.leftHandGesture = leftHandGesture;
+    }
+    
+    public void setRightHandGesture(Gesture rightHandGesture) {
+        this.rightHandGesture = rightHandGesture;
+    }
+    
     @Override
     public boolean equals(Object obj) {
         if(obj instanceof Gestures) {

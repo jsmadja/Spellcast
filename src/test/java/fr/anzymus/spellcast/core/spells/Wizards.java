@@ -1,12 +1,13 @@
 package fr.anzymus.spellcast.core.spells;
 
-import fr.anzymus.spellcast.core.Player;
+import org.apache.commons.lang3.RandomStringUtils;
+
 import fr.anzymus.spellcast.core.Wizard;
 
 public class Wizards {
 
     public static Wizard create() {
-        return new Wizard(new Player("name"));
+        return new Wizard("Wizard "+RandomStringUtils.randomAlphabetic(7));
     }
 
 }

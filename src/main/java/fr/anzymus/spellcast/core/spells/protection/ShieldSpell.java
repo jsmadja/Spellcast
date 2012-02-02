@@ -11,6 +11,11 @@ public class ShieldSpell extends AbstractSpell {
     }
     
     @Override
+    public Integer getPriority() {
+        return 0;
+    }
+    
+    @Override
     public void castTo(LivingEntity attacker, LivingEntity target) {
         target.setShield(true);
     }

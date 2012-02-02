@@ -35,10 +35,15 @@ public abstract class AbstractSpell implements Spell {
             return Hand.none;
         }
         if(isOneHandedSpell()) {
-            if(applyToLeftHand(wizardGestures)) {
+            boolean applyToLeftHand = applyToLeftHand(wizardGestures);
+            boolean applyToRightHand = applyToRightHand(wizardGestures);
+            if(applyToLeftHand && applyToRightHand) {
+                return Hand.each;
+            }
+            if(applyToLeftHand) {
                 return Hand.left;
             }
-            if(applyToRightHand(wizardGestures)) {
+            if(applyToRightHand) {
                 return Hand.right;
             }
             return Hand.none;
@@ -149,7 +154,10 @@ public abstract class AbstractSpell implements Spell {
     @Override
     public String name() {
         String className = this.getClass().getSimpleName();
-        String spellName = StringUtils.remove(className, "Spell");
+        String spellName = StringUtils.remove(className, "Other");
+        spellName = StringUtils.remove(spellName, "Version");
+        spellName = StringUtils.remove(spellName, "Shorter");
+        spellName = spellName.substring(0, spellName.length()-"Spell".length());
         return spellName;
     }
 }

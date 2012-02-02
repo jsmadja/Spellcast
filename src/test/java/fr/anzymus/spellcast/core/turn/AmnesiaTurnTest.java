@@ -14,8 +14,8 @@ import static org.junit.Assert.fail;
 import org.junit.Test;
 
 import fr.anzymus.spellcast.core.Game;
-import fr.anzymus.spellcast.core.Player;
-import fr.anzymus.spellcast.core.PlayerNotCreatedException;
+import fr.anzymus.spellcast.core.Wizard;
+import fr.anzymus.spellcast.core.WizardNotCreatedException;
 import fr.anzymus.spellcast.core.creature.Creature;
 import fr.anzymus.spellcast.core.spells.enchantments.AmnesiaSpell;
 import fr.anzymus.spellcast.core.spells.nonspells.SurrenderSpell;
@@ -25,10 +25,10 @@ import fr.anzymus.spellcast.core.spells.summons.SummonGoblinSpell;
 public class AmnesiaTurnTest {
 
     @Test
-    public void should_repeat_identically_the_gestures_when_a_wizard_is_amnesic() throws PlayerNotCreatedException {
+    public void should_repeat_identically_the_gestures_when_a_wizard_is_amnesic() throws WizardNotCreatedException {
         Game game = new Game();
-        Player player1 = game.createNewPlayer("player1");
-        Player amnesicPlayer = game.createNewPlayer("player2");
+        Wizard player1 = game.createNewWizard("player1");
+        Wizard amnesicPlayer = game.createNewWizard("player2");
         
         game.beginTurn();
         player1.makeGesture(digit_pointing, nothing);
@@ -40,39 +40,39 @@ public class AmnesiaTurnTest {
         player1.makeGesture(palm, nothing);
         amnesicPlayer.makeGesture(nothing, nothing);
         Decisions decisions = game.validateTurn();
-        decisions.cast(player1, ShieldSpell.class).to(player1.getWizard());
+        decisions.cast(player1, ShieldSpell.class).to(player1);
         game.endTurn();
 
         game.beginTurn();
         player1.makeGesture(palm, nothing);
         amnesicPlayer.makeGesture(nothing, nothing);
         decisions = game.validateTurn();
-        decisions.cast(player1, AmnesiaSpell.class).to(amnesicPlayer.getWizard());
+        decisions.cast(player1, AmnesiaSpell.class).to(amnesicPlayer);
         game.endTurn();
-        assertTrue(amnesicPlayer.getWizard().isAmnesic());
+        assertTrue(amnesicPlayer.isAmnesic());
 
         game.beginTurn();
         player1.makeGesture(palm, nothing);
         amnesicPlayer.makeGesture(palm, palm);
         decisions = game.validateTurn();
-        decisions.cast(player1, ShieldSpell.class).to(player1.getWizard());
+        decisions.cast(player1, ShieldSpell.class).to(player1);
         try {
-            decisions.cast(amnesicPlayer, SurrenderSpell.class).to(player1.getWizard());
+            decisions.cast(amnesicPlayer, SurrenderSpell.class).to(player1);
             fail("amnesic player can't surrender");
         } catch(IllegalAccessError e) {
             
         }
         game.endTurn();
         
-        assertFalse(amnesicPlayer.getWizard().isAmnesic());
+        assertFalse(amnesicPlayer.isAmnesic());
     }
     
     @Test
-    public void should_repeat_identically_the_last_attack_when_a_creature_is_amnesic() throws PlayerNotCreatedException {
+    public void should_repeat_identically_the_last_attack_when_a_creature_is_amnesic() throws WizardNotCreatedException {
         Game game = new Game();
-        Player player1 = game.createNewPlayer("player1");
-        Player player2 = game.createNewPlayer("player2");
-        Player player3 = game.createNewPlayer("player3");
+        Wizard player1 = game.createNewWizard("player1");
+        Wizard player2 = game.createNewWizard("player2");
+        Wizard player3 = game.createNewWizard("player3");
 
         // scenario :
         // player1 summons a goblin
@@ -103,11 +103,11 @@ public class AmnesiaTurnTest {
         player2.makeGesture(nothing, nothing);
         player3.makeGesture(nothing, palm);
         Decisions decisions = game.validateTurn();
-        decisions.cast(player1, SummonGoblinSpell.class).to(player1.getWizard());
-        decisions.cast(player3, ShieldSpell.class).to(player3.getWizard());
+        decisions.cast(player1, SummonGoblinSpell.class).to(player1);
+        decisions.cast(player3, ShieldSpell.class).to(player3);
         game.endTurn();
 
-        Creature goblin = player1.getWizard().getCreatures().get(0);
+        Creature goblin = player1.getCreatures().get(0);
 
         // 4. the goblin attacks player 2
         game.beginTurn();
@@ -116,10 +116,10 @@ public class AmnesiaTurnTest {
         player3.makeGesture(nothing, palm);
         decisions = game.validateTurn();
         decisions.cast(player3, AmnesiaSpell.class).to(goblin);
-        decisions.attack(goblin).to(player2.getWizard());
+        decisions.attack(goblin).to(player2);
         game.endTurn();
         
-        assertEquals(13, player2.getWizard().getHealth());
+        assertEquals(13, player2.getHealth());
         
         // the goblin attacks player 3 but it will attack player 2 due to amnesia
         game.beginTurn();
@@ -127,11 +127,11 @@ public class AmnesiaTurnTest {
         player2.makeGesture(nothing, nothing);
         player3.makeGesture(nothing, nothing);
         decisions = game.validateTurn();
-        decisions.attack(goblin).to(player3.getWizard());
+        decisions.attack(goblin).to(player3);
         game.endTurn();
         
-        assertEquals(12, player2.getWizard().getHealth());
-        assertEquals(player3.getWizard().getInitialHealth(), player3.getWizard().getHealth());
+        assertEquals(12, player2.getHealth());
+        assertEquals(player3.getInitialHealth(), player3.getHealth());
 
     }
 }

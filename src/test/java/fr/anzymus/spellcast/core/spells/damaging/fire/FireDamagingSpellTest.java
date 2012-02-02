@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import fr.anzymus.spellcast.core.LivingEntity;
-import fr.anzymus.spellcast.core.Player;
+import fr.anzymus.spellcast.core.Wizard;
 import fr.anzymus.spellcast.core.spells.Wizards;
 import fr.anzymus.spellcast.core.spells.enchantments.ResistHeatSpell;
 import fr.anzymus.spellcast.core.turn.Decision;
@@ -18,8 +18,8 @@ public class FireDamagingSpellTest {
     
     @Test
     public void should_not_hurt_a_resist_heat_wizard_with_a_fire_damaging_spell() {
-        Player attacker = new Player("attackerPlayer");
-        Player attacked = new Player("attackedPlayer");
+        Wizard attacker = new Wizard("attackerPlayer");
+        Wizard attacked = new Wizard("attackedPlayer");
         LivingEntity target = Wizards.create();
 
         assertEquals(target.getInitialHealth(), target.getHealth());

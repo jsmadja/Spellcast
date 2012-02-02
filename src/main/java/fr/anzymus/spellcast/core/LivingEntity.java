@@ -18,6 +18,10 @@ public abstract class LivingEntity {
 
     private boolean counterSpell;
     
+    private boolean confused;
+
+    private boolean dispelMagic;
+    
     protected LivingEntity() {
         health = getInitialHealth();
     }
@@ -72,8 +76,8 @@ public abstract class LivingEntity {
         return magicMirror;
     }
 
-    public void setResistHeat(boolean resistHeaht) {
-        this.resistHeat = true;
+    public void setResistHeat(boolean resistHeat) {
+        this.resistHeat = resistHeat;
     }
     
     public boolean isResistHeat() {
@@ -94,5 +98,21 @@ public abstract class LivingEntity {
 
     public void setCounterSpell(boolean counterSpell) {
         this.counterSpell = counterSpell;
+    }
+
+    public void setConfused(boolean confused) {
+        this.confused = confused;
+    }
+
+    public boolean isConfused() {
+        return confused;
+    }
+
+    public boolean hasDispelMagic() {
+        return dispelMagic;
+    }
+    
+    public void setDispelMagic(boolean dispelMagic) {
+        this.dispelMagic = dispelMagic;
     }
 }

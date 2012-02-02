@@ -79,6 +79,16 @@ public class AbstractSpellTest {
     }
     
     @Test
+    public void should_apply_with_left_hand_v2() {
+        GestureHistory gestureHistory = new GestureHistory();
+        gestureHistory.add(palm,snap);
+        gestureHistory.add(palm,snap);
+        gestureHistory.add(wave,wave);
+        gestureHistory.add(snap,snap);
+        assertEquals(Hand.both, invisibilitySpell.apply(gestureHistory));
+    }
+    
+    @Test
     public void should_apply_with_right_hand() {
         GestureHistory gestureHistory = new GestureHistory();
         gestureHistory.add(nothing, palm);

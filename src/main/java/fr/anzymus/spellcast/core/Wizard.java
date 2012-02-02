@@ -1,6 +1,7 @@
 package fr.anzymus.spellcast.core;
 
 import static fr.anzymus.spellcast.core.Hand.both;
+import static fr.anzymus.spellcast.core.Hand.each;
 import static fr.anzymus.spellcast.core.Hand.left;
 import static fr.anzymus.spellcast.core.Hand.none;
 import static fr.anzymus.spellcast.core.Hand.right;
@@ -8,7 +9,8 @@ import static fr.anzymus.spellcast.core.Hand.right;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.RandomStringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import fr.anzymus.spellcast.core.creature.Creature;
 import fr.anzymus.spellcast.core.creature.Goblin;
@@ -21,10 +23,12 @@ import fr.anzymus.spellcast.core.spells.Spells;
 
 public class Wizard extends LivingEntity {
 
+    private Logger log = LoggerFactory.getLogger(Wizard.class);
+
     private GestureHistory gestureHistory = new GestureHistory();
 
     private List<Spell> spells = Spells.createList();
-    private Player owner;
+    private boolean surrender;
 
     private boolean invisible;
 
@@ -32,10 +36,9 @@ public class Wizard extends LivingEntity {
 
     private List<Creature> creatures = new ArrayList<Creature>();
 
-    public Wizard(Player owner) {
+    public Wizard(String name) {
         super();
-        setName("Wizard " + RandomStringUtils.randomAlphabetic(5).toLowerCase());
-        this.owner = owner;
+        setName(name);
     }
 
     public GestureHistory getGestureHistory() {
@@ -53,19 +56,29 @@ public class Wizard extends LivingEntity {
         List<CastableSpell> spellsToCast = new ArrayList<CastableSpell>();
         for (Spell spell : spells) {
             Hand hand = spell.apply(gestureHistory);
-            boolean isCastable = hand != none && (hand == left && !isLeftHandUsed) || (hand == right && !isRightHandUsed);
+            boolean isCastable = hand == each || hand == both
+                    || (hand != none && (hand == left && !isLeftHandUsed) || (hand == right && !isRightHandUsed));
             if (isCastable) {
-                CastableSpell castableSpell = new CastableSpell(spell, hand);
-                spellsToCast.add(castableSpell);
-                isLeftHandUsed = hand == left || hand == both;
-                isRightHandUsed = hand == right || hand == both;
+                if (hand == both) {
+                    CastableSpell castableSpell = new CastableSpell(spell, hand);
+                    spellsToCast.clear();
+                    spellsToCast.add(castableSpell);
+                    return spellsToCast;
+                }
+                if (hand == each) {
+                    CastableSpell castableSpellLeft = new CastableSpell(spell, left);
+                    CastableSpell castableSpellRight = new CastableSpell(spell, right);
+                    spellsToCast.add(castableSpellLeft);
+                    spellsToCast.add(castableSpellRight);
+                } else {
+                    CastableSpell castableSpell = new CastableSpell(spell, hand);
+                    spellsToCast.add(castableSpell);
+                }
+                isLeftHandUsed = hand == left || hand == both || hand == each;
+                isRightHandUsed = hand == right || hand == both || hand == each;
             }
         }
         return spellsToCast;
-    }
-
-    public Player getOwner() {
-        return owner;
     }
 
     public void summonCreature(Creature creature) {
@@ -97,6 +110,69 @@ public class Wizard extends LivingEntity {
         gestureHistory.removeLastGestures();
         Gestures lastGestures = gestureHistory.getLastGestures();
         gestureHistory.add(lastGestures);
+    }
+
+    public void replaceGestureBy(Hand hand, Gesture gesture) {
+        Gestures gestures = gestureHistory.removeLastGestures();
+        if (hand == Hand.left) {
+            gestures.setLeftHandGesture(gesture);
+        } else {
+            gestures.setRightHandGesture(gesture);
+        }
+        gestureHistory.add(gestures);
+    }
+
+    public void surrender() {
+        this.surrender = true;
+    }
+
+    public boolean hasSurrendered() {
+        return surrender;
+    }
+
+    public void cast(Spell spell, LivingEntity target) {
+        if (spell != null) {
+            log.info(getName() + " cast " + spell.getClass().getSimpleName() + " to " + target.getName());
+            spell.castTo(this, target);
+        }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Wizard) {
+            return getName().equals(((Wizard) obj).getName());
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        String string = getName() + " " + getHealth() + " HP";
+        if (isAmnesic()) {
+            string += " amnesic";
+        }
+        if (isInvisible()) {
+            string += " invisible";
+        }
+        if (isParalyzing()) {
+            string += " paralyzing";
+        }
+        if (isResistHeat()) {
+            string += " resistHeat";
+        }
+        if (hasCounterSpell()) {
+            string += " counterSpell";
+        }
+        if (hasMagicMirror()) {
+            string += " magic mirror";
+        }
+        if (hasShield()) {
+            string += " shield";
+        }
+        if (isConfused()) {
+            string += " confused";
+        }
+        return string;
     }
 
 }

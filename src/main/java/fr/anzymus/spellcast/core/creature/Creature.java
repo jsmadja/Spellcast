@@ -27,12 +27,18 @@ public abstract class Creature extends LivingEntity {
             log.info(getName()+" is amnesic and attacks its last target");
             target = lastTarget;
         }
-        log.info(getName() +" attacks "+target);
-        target.removeHealth(getAttackPoint());
+        if(!target.hasShield()) {
+            log.info(getName() +" attacks "+target.getName());
+            target.removeHealth(getAttackPoint());
+        }
         lastTarget = target;
     }
 
     public abstract int getAttackPoint();
+    
+    public LivingEntity getLastTarget() {
+        return lastTarget;
+    }
     
     @Override
     public boolean equals(Object o) {

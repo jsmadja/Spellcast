@@ -5,24 +5,20 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import fr.anzymus.spellcast.core.Player;
-import fr.anzymus.spellcast.core.PlayerNotCreatedException;
 import fr.anzymus.spellcast.core.Wizard;
+import fr.anzymus.spellcast.core.WizardNotCreatedException;
 import fr.anzymus.spellcast.core.spells.Spell;
 import fr.anzymus.spellcast.core.spells.Wizards;
 
 public class StabSpellTest {
 
-    Player player;
-    Wizard wizardPlayer;
+    Wizard player = Wizards.create();;
     Wizard target;
     Spell stab = new StabSpell();
 
     @Before
     public void init() {
-        player = new Player("player");
         target = Wizards.create();
-        wizardPlayer = player.getWizard();
     }
     
     @Test
@@ -32,22 +28,22 @@ public class StabSpellTest {
     }
     
     @Test
-    public void should_not_stab_a_wizard_who_has_a_shield() throws PlayerNotCreatedException {
+    public void should_not_stab_a_wizard_who_has_a_shield() throws WizardNotCreatedException {
         target.setShield(true);
         player.cast(stab, target);
         assertEquals(target.getInitialHealth(), target.getHealth());
     }
     
     @Test
-    public void should_not_stab_a_wizard_who_has_a_magic_mirror() throws PlayerNotCreatedException {
+    public void should_not_stab_a_wizard_who_has_a_magic_mirror() throws WizardNotCreatedException {
         target.setMagicMirror(true);
         player.cast(stab, target);
         assertEquals(target.getInitialHealth(), target.getHealth());
     }
     
     @Test
-    public void should_not_stab_himselft() throws PlayerNotCreatedException {
-        player.cast(stab, wizardPlayer);
-        assertEquals(wizardPlayer.getInitialHealth(), wizardPlayer.getHealth());
+    public void should_not_stab_himselft() throws WizardNotCreatedException {
+        player.cast(stab, player);
+        assertEquals(player.getInitialHealth(), player.getHealth());
     }
 }

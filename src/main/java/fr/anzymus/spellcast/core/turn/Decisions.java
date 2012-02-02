@@ -9,7 +9,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import fr.anzymus.spellcast.core.Player;
+import fr.anzymus.spellcast.core.Hand;
 import fr.anzymus.spellcast.core.Wizard;
 import fr.anzymus.spellcast.core.creature.Creature;
 import fr.anzymus.spellcast.core.spells.CastableSpell;
@@ -21,18 +21,38 @@ public class Decisions implements Iterable<Decision> {
 
     private List<Decision> decisions = new ArrayList<Decision>();
 
-    public Decision cast(Player player, Class<? extends Spell> spellClass) {
+    public Decision cast(Wizard wizard, Class<? extends Spell> spellClass) {
         for (Decision decision : decisions) {
-            if (!(decision instanceof CreatureDecision)) {
+            if (isWizardDecision(decision)) {
                 CastableSpell castableSpell = decision.getCastableSpell();
                 Spell spell = castableSpell.getSpell();
                 Class<? extends Spell> decisionSpellClass = spell.getClass();
-                if (decision.getPlayer().equals(player) && decisionSpellClass.equals(spellClass)) {
+                if (decision.getWizard().equals(wizard) && decisionSpellClass.equals(spellClass)) {
                     return decision;
                 }
             }
         }
-        throw new IllegalAccessError(player + " is not able to cast " + spellClass.getSimpleName());
+        log.error(wizard.getGestureHistory().toString());
+        throw new IllegalAccessError(wizard.getName() + " is not able to cast " + spellClass.getSimpleName());
+    }
+    
+    public Decision cast(Wizard wizard, Class<? extends Spell> spellClass, Hand hand) {
+        for (Decision decision : decisions) {
+            if (isWizardDecision(decision)) {
+                CastableSpell castableSpell = decision.getCastableSpell();
+                Spell spell = castableSpell.getSpell();
+                Class<? extends Spell> decisionSpellClass = spell.getClass();
+                if (decision.getWizard().equals(wizard) && decisionSpellClass.equals(spellClass) && hand == castableSpell.getHand()) {
+                    return decision;
+                }
+            }
+        }
+        log.error(wizard.getGestureHistory().toString());
+        throw new IllegalAccessError(wizard.getName() + " is not able to cast " + spellClass.getSimpleName());
+    }
+
+    private boolean isWizardDecision(Decision decision) {
+        return !(decision instanceof CreatureDecision);
     }
 
     public void add(Decision decision) {
@@ -58,7 +78,7 @@ public class Decisions implements Iterable<Decision> {
                 }
             }
         }
-        throw new IllegalAccessError(creature + " is not able to attack");
+        throw new IllegalAccessError(creature.getName() + " is not able to attack");
     }
 
     @Override
@@ -84,5 +104,9 @@ public class Decisions implements Iterable<Decision> {
                 }
             });
         }
+    }
+
+    public int size() {
+        return decisions.size();
     }
 }
